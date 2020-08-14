@@ -3,6 +3,8 @@ extends Node
 export(PackedScene) var player_ps = null
 export(PackedScene) var bg_ps = null
 export(PackedScene) var enemy_ps = null
+export(PackedScene) var pb_ps = null
+export(PackedScene) var eb_ps = null
 
 var m_boom_cnt = 5
 
@@ -24,6 +26,10 @@ func get_player_ps():
 	return player_ps
 func get_enemy_ps(type_id):
 	return enemy_ps
+func get_player_bullet_ps():
+	return pb_ps
+func get_enemy_bullet_ps():
+	return eb_ps
 func get_player_max_hp():
 	return 200
 func get_player_max_cd():

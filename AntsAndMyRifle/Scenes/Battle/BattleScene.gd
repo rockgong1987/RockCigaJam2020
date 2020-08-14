@@ -4,6 +4,8 @@ var m_context
 # get_bg_ps()
 # get_player_ps()
 # get_enemy_ps(type_id)
+# get_player_bullet_ps()
+# get_enemy_bullet_ps()
 # ----forward
 # get_player_max_hp()
 # get_player_max_cd()
@@ -25,6 +27,7 @@ var m_context
 # get_main_spawn_enemy(step_cnt)
 # player_use_boom()
 export(float) var pos_linear_weight = 0.0
+export(float) var bullet_y_offset = 0.0
 
 onready var m_battle_core = $BattleCore
 onready var m_player_pos = $PlayerPos
@@ -52,6 +55,17 @@ func setup(context):
 		var inst = player_ps.instance()
 		self.add_child(inst)
 		inst.position = linear_pos(0)
+		
+func update_insts():
+	for bi in m_player_bullet_insts:
+		var bullets = m_battle_core.get_bullets_pos()
+		var bullet = null
+		for b in bullets:
+			if b[0] == bi[0]:
+				bullet = b
+				break
+		if bullet != null:
+			bi[1].position = linear_pos(bullet[1]) + Vector2(0, bullet_y_offset)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -62,6 +76,7 @@ func _process(delta):
 	while (m_timer > m_step):
 		m_timer -= m_step
 		m_battle_core.step(0)
+	update_insts()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -70,6 +85,13 @@ func linear_pos(pos):
 	return Vector2(m_player_pos.position.x + pos * pos_linear_weight, m_player_pos.position.y)
 
 # -- scene used
+func player_bullet_spawned(inst_id):
+	var b_ps = m_context.get_player_bullet_ps()
+	if b_ps != null:
+		var inst = b_ps.instance()
+		self.add_child(inst)
+		m_player_bullet_insts.append([inst_id, inst])
+	pass
 func enemy_spawned(inst_id):
 	pass
 func enemy_bullet_spawned(inst_id):

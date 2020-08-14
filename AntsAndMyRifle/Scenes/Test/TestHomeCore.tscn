@@ -6,7 +6,7 @@
 [node name="TestHomeCore" type="Node"]
 script = ExtResource( 2 )
 box_capacity = 10
-ant_capacity = 10
+ant_capacity = 3
 box_count = 6
 ant_count = 3
 

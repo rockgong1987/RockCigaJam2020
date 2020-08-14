@@ -59,7 +59,7 @@ func process_ants():
 							break
 					if !occupied:
 						box_id = b
-				if box_id != null:
+				if box_id != null and (len(m_ant_states) < m_context.get_ant_capacity() or m_ant_born_ratio < 0.98):
 					ant[1] = 1
 					ant[2] = ant_go_cd
 					ant[3] = box_id
@@ -90,7 +90,8 @@ func process_ants():
 				ant[1] = 0
 				ant[2] = ant_wait_cd
 				ant[3] = null
-			m_context.ant_state_changed(ant[0], old_state, ant[1], ant[3])
+			if old_state != ant[1]:
+				m_context.ant_state_changed(ant[0], old_state, ant[1], ant[3])
 	
 func step():
 	process_ants()

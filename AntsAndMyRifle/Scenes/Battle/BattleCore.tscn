@@ -4,3 +4,7 @@
 
 [node name="BattleCore" type="Node"]
 script = ExtResource( 1 )
+enemy_save_zone_length = 500
+boom_max_process = 100
+bullet_speed = 100
+player_radius = 50

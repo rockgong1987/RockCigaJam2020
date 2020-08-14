@@ -45,7 +45,7 @@ var m_player_cd = 0
 var m_player_bullets_pos = []
 # [inst_id, pos]
 var m_enemy_bullets_pos = []
-# [inst_id, owner_id, pos]
+# [inst_id, owner_id, pos, speed]
 var m_boom_process = 0
 var m_boom_target_pos = 0
 
@@ -158,7 +158,7 @@ func process_enemy():
 				if bullet_speed == 0:
 					damage_player(e[0])
 				else:
-					m_enemy_bullets_pos.append([m_enemy_bullet_id_counter, e[0], e[3]])
+					m_enemy_bullets_pos.append([m_enemy_bullet_id_counter, e[0], e[3], m_context.get_enemy_attack_bullet_speed(e[1])])
 					m_context.enemy_bullet_spawned(m_enemy_bullet_id_counter)
 					m_enemy_bullet_id_counter += 1
 				e[5] = m_context.get_enemy_attack_cd(e[1])
@@ -167,8 +167,7 @@ func process_enemy_bullet(index):
 	if index < 0 or index >= len(m_enemy_bullets_pos):
 		return false
 	var bullet = m_enemy_bullets_pos[index]
-	var enemy = get_enemy(bullet[1])
-	var speed = m_context.get_enemy_attack_bullet_speed(enemy[1])
+	var speed = bullet[3]
 	var old_pos = bullet[2]
 	var new_pos = old_pos - speed
 	if new_pos < player_radius:
@@ -190,7 +189,7 @@ func process_enemy_bullets():
 func process_spawn_enemy():
 	var enemy_type_id = m_context.get_main_spawn_enemy(m_main_step_counter)
 	if enemy_type_id != null:
-		m_enemy_states.append([m_enemy_id_counter, enemy_type_id, m_context.get_enemy_max_hp(enemy_type_id), 100, 0, 0, 0])
+		m_enemy_states.append([m_enemy_id_counter, enemy_type_id, m_context.get_enemy_max_hp(enemy_type_id), 10000, 0, 0, 0])
 		m_context.enemy_spawned(m_enemy_id_counter)
 		m_enemy_id_counter += 1
 

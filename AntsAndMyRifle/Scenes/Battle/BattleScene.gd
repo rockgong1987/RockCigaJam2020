@@ -6,6 +6,7 @@ var m_context
 # get_enemy_ps(type_id)
 # get_player_bullet_ps()
 # get_enemy_bullet_ps()
+# battle_result(win)
 # ----forward
 # get_player_max_hp()
 # get_player_max_cd()
@@ -66,6 +67,24 @@ func update_insts():
 				break
 		if bullet != null:
 			bi[1].position = linear_pos(bullet[1]) + Vector2(0, bullet_y_offset)
+	for ei in m_enemy_insts:
+		var enemies = m_battle_core.get_enemy_states()
+		var enemy = null
+		for e in enemies:
+			if e[0] == ei[0]:
+				enemy = e
+				break
+		if enemy != null:
+			ei[1].position = linear_pos(enemy[3])
+	for bi in m_enemy_bullet_insts:
+		var bullets = m_battle_core.get_enemy_bullets_pos()
+		var bullet = null
+		for b in bullets:
+			if b[0] == bi[0]:
+				bullet = b
+				break
+		if bullet != null:
+			bi[1].position = linear_pos(bullet[2]) + Vector2(0, bullet_y_offset)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -92,17 +111,53 @@ func player_bullet_spawned(inst_id):
 		self.add_child(inst)
 		m_player_bullet_insts.append([inst_id, inst])
 	pass
+func player_bullet_die(inst_id):
+	for b in m_player_bullet_insts:
+		if b[0] == inst_id:
+			b[1].queue_free()
+			break
 func enemy_spawned(inst_id):
+	var type_id = null
+	var enemies = m_battle_core.get_enemy_states()
+	for e in enemies:
+		if e[0] == inst_id:
+			type_id = e[1]
+			break
+	var e_ps = m_context.get_enemy_ps(type_id)
+	if e_ps != null:
+		var inst = e_ps.instance()
+		self.add_child(inst)
+		m_enemy_insts.append([inst_id, inst])
 	pass
 func enemy_bullet_spawned(inst_id):
+	print("enemy_bullet_spawned : ", inst_id)
+	var b_ps = m_context.get_enemy_bullet_ps()
+	if b_ps != null:
+		var inst = b_ps.instance()
+		self.add_child(inst)
+		m_enemy_bullet_insts.append([inst_id, inst])
+	pass
+func enemy_bullet_die(inst_id):
+	print("enemy_bullet_die : ", inst_id)
+	for b in m_enemy_bullet_insts:
+		if b[0] == inst_id:
+			b[1].queue_free()
+			break
 	pass
 func enemy_damaged(inst_id, dmg):
 	pass
 func enemy_die(inst_id):
+	for b in m_enemy_insts:
+		if b[0] == inst_id:
+			b[1].queue_free()
+			break
+	if len(m_battle_core.get_enemy_states()) == 0:
+		m_context.battle_result(true)
 	pass
 func player_damaged(inst_id, dmg):
 	pass
 func player_die():
+	m_context.battle_result(false)
 	pass
 
 # -- forward

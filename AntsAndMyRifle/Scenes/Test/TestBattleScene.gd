@@ -30,12 +30,18 @@ func get_player_bullet_ps():
 	return pb_ps
 func get_enemy_bullet_ps():
 	return eb_ps
+func battle_result(win):
+	if win:
+		print("WIN")
+	else:
+		print("LOSE")
+	pass
 func get_player_max_hp():
 	return 200
 func get_player_max_cd():
-	return 10
+	return 100
 func get_player_atk():
-	return 5
+	return 5000
 func get_player_crit_prob():
 	return 0.1
 func get_player_double_prob():
@@ -55,26 +61,26 @@ func get_enemy_atk(type_id):
 		return 20
 func get_enemy_max_hp(type_id):
 	if type_id == 0:
-		return 20
+		return 200
 	elif type_id == 1:
-		return 10
-	elif type_id == 2:
-		return 50
-	else:
 		return 100
+	elif type_id == 2:
+		return 500
+	else:
+		return 1000
 func get_enemy_radius(type_id):
 	if type_id == 3:
-		return 50
-	return 3
+		return 500
+	return 800
 func get_enemy_attack_range(type_id):
 	if type_id == 0:
 		return 1
 	elif type_id == 1:
-		return 20
+		return 5000
 	elif type_id == 2:
 		return 1
 	else:
-		return 100
+		return 10000
 func get_enemy_attack_cd(type_id):
 	if type_id == 0:
 		return 10
@@ -99,18 +105,18 @@ func get_enemy_attack_bullet_speed(type_id):
 	if type_id == 0:
 		return 0
 	elif type_id == 1:
-		return 3
+		return 100
 	elif type_id == 2:
 		return 0
-	return 10
+	return 100
 
 func get_enemy_move_speed(type_id):
 	if type_id == 0:
-		return 3
+		return 30
 	elif type_id == 1:
-		return 3
+		return 30
 	elif type_id == 2:
-		return 10
+		return 100
 	elif type_id == 3:
 		return 0
 	

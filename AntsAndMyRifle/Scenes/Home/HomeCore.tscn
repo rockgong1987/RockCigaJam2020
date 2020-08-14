@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Home/HomeCore.gd" type="Script" id=1]
+
+[node name="HomeCore" type="Node"]
+script = ExtResource( 1 )
+ant_wait_cd = 2
+ant_go_cd = 3
+ant_eat_cd = 4
+ant_back_cd = 3

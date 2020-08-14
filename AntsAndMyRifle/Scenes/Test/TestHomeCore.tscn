@@ -1,0 +1,135 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Home/HomeCore.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Test/TestHomeCore.gd" type="Script" id=2]
+
+[node name="TestHomeCore" type="Node"]
+script = ExtResource( 2 )
+box_capacity = 10
+ant_capacity = 10
+box_count = 6
+ant_count = 3
+
+[node name="HomeCore" parent="." instance=ExtResource( 1 )]
+ant_eat_cd = 5
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BCapUp" type="Button" parent="Control"]
+margin_left = 26.0
+margin_top = 20.0
+margin_right = 111.0
+margin_bottom = 90.0
+text = "BCapUp"
+
+[node name="BCapLabel" type="Label" parent="Control"]
+margin_left = 53.5143
+margin_top = 128.434
+margin_right = 93.5143
+margin_bottom = 142.434
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BCapDown" type="Button" parent="Control"]
+margin_left = 30.7568
+margin_top = 182.921
+margin_right = 115.757
+margin_bottom = 252.921
+text = "BCapDown"
+
+[node name="ACapUp" type="Button" parent="Control"]
+margin_left = 155.624
+margin_top = 22.3784
+margin_right = 240.624
+margin_bottom = 92.3784
+text = "BCapUp"
+
+[node name="ACapLabel" type="Label" parent="Control"]
+margin_left = 183.138
+margin_top = 130.813
+margin_right = 223.138
+margin_bottom = 144.813
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ACapDown" type="Button" parent="Control"]
+margin_left = 160.38
+margin_top = 185.3
+margin_right = 245.38
+margin_bottom = 255.3
+text = "BCapDown"
+
+[node name="BCntUp" type="Button" parent="Control"]
+margin_left = 20.9603
+margin_top = 370.258
+margin_right = 105.96
+margin_bottom = 440.258
+text = "BCapUp"
+
+[node name="BCntLabel" type="Label" parent="Control"]
+margin_left = 48.4746
+margin_top = 478.692
+margin_right = 88.4746
+margin_bottom = 492.692
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BCntDown" type="Button" parent="Control"]
+margin_left = 25.7172
+margin_top = 533.179
+margin_right = 110.717
+margin_bottom = 603.179
+text = "BCapDown"
+
+[node name="ACntUp" type="Button" parent="Control"]
+margin_left = 150.584
+margin_top = 372.637
+margin_right = 235.584
+margin_bottom = 442.637
+text = "BCapUp"
+
+[node name="ACntLabel" type="Label" parent="Control"]
+margin_left = 178.098
+margin_top = 481.071
+margin_right = 218.098
+margin_bottom = 495.071
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ACntDown" type="Button" parent="Control"]
+margin_left = 155.341
+margin_top = 535.558
+margin_right = 240.341
+margin_bottom = 605.558
+text = "BCapDown"
+
+[node name="Step" type="Button" parent="Control"]
+margin_left = 287.115
+margin_top = 29.6649
+margin_right = 469.115
+margin_bottom = 157.665
+text = "Step"
+
+[node name="Output" type="TextEdit" parent="Control"]
+margin_left = 521.0
+margin_top = 39.0
+margin_right = 1202.0
+margin_bottom = 691.0
+[connection signal="pressed" from="Control/BCapUp" to="." method="_on_BCapUp_pressed"]
+[connection signal="pressed" from="Control/BCapDown" to="." method="_on_BCapDown_pressed"]
+[connection signal="pressed" from="Control/ACapUp" to="." method="_on_ACapUp_pressed"]
+[connection signal="pressed" from="Control/ACapDown" to="." method="_on_ACapDown_pressed"]
+[connection signal="pressed" from="Control/BCntUp" to="." method="_on_BCntUp_pressed"]
+[connection signal="pressed" from="Control/BCntDown" to="." method="_on_BCntDown_pressed"]
+[connection signal="pressed" from="Control/ACntUp" to="." method="_on_ACntUp_pressed"]
+[connection signal="pressed" from="Control/ACntDown" to="." method="_on_ACntDown_pressed"]
+[connection signal="pressed" from="Control/Step" to="." method="_on_Step_pressed"]

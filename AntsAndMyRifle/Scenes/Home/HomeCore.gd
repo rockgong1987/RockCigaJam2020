@@ -94,6 +94,8 @@ func process_ants():
 				m_context.ant_state_changed(ant[0], old_state, ant[1], ant[3])
 	
 func step():
+	if m_context == null:
+		return
 	process_ants()
 
 func can_spawn_box():

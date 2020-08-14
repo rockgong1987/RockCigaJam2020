@@ -14,12 +14,14 @@ var m_context = null
 # get_enemy_max_hp(type_id)
 # get_enemy_radius(type_id)
 # get_enemy_attack_range(type_id)
+# get_enemy_attack_bullet_speed(type_id)
 # get_enemy_attack_cd(type_id)
 # get_enemy_attack_pre(type_id)
 # get_enemy_move_speed(type_id)
 # get_main_spawn_enemy(step_cnt)
 # player_use_boom()
 # enemy_spawned(inst_id)
+# enemy_bullet_spawned(inst_id)
 # enemy_damaged(inst_id, dmg)
 # enemy_die(inst_id)
 # player_damaged(inst_id, dmg)
@@ -38,6 +40,7 @@ var m_player_hp = 0
 var m_player_cd = 0
 var m_player_bullets_pos = []
 var m_enemy_bullets_pos = []
+# [inst_id, owner_id, pos]
 var m_boom_process = 0
 var m_boom_target_pos = 0
 
@@ -70,7 +73,7 @@ func damage_enemy(inst_id, dmg):
 		enemy[2] -= dmg
 		m_context.enemy_damaged(inst_id, dmg)
 		if enemy[2] <= 0:
-			m_enemy_states.erase(inst_id)
+			m_enemy_states.erase(enemy)
 			m_context.enemy_die(inst_id)
 	pass
 
@@ -145,8 +148,36 @@ func process_enemy():
 			elif e[6] > 0:
 				e[6] -= 1
 			else:
-				damage_player(e[0])
+				var bullet_speed = m_context.get_enemy_attack_bullet_speed(e[1])
+				if bullet_speed == 0:
+					damage_player(e[0])
+				else:
+					m_enemy_bullets_pos.append([m_enemy_bullet_id_counter, e[0], e[3]])
+					m_context.enemy_bullet_spawned(m_enemy_bullet_id_counter)
+					m_enemy_bullet_id_counter += 1
 				e[5] = m_context.get_enemy_attack_cd(e[1])
+		
+func process_enemy_bullet(index):
+	if index < 0 or index >= len(m_enemy_bullets_pos):
+		return false
+	var bullet = m_enemy_bullets_pos[index]
+	var enemy = get_enemy(bullet[1])
+	var speed = m_context.get_enemy_attack_bullet_speed(enemy[1])
+	var old_pos = bullet[2]
+	var new_pos = old_pos - speed
+	if new_pos < player_radius:
+		damage_player(bullet[1])
+		return true
+	bullet[2] = new_pos
+	return false
+				
+func process_enemy_bullets():
+	var index = 0
+	while (index < len(m_enemy_bullets_pos)):
+		if process_enemy_bullet(index):
+			m_enemy_bullets_pos.remove(index)
+			index -= 1
+		index += 1
 		
 func process_spawn_enemy():
 	var enemy_type_id = m_context.get_main_spawn_enemy(m_main_step_counter)
@@ -173,6 +204,7 @@ func step(boom_pos):
 			m_player_cd = m_context.get_player_max_cd()
 			do_shot()
 	process_bullets()
+	process_enemy_bullets()
 	m_main_step_counter += 1
 	
 func get_player_hp():
@@ -186,6 +218,9 @@ func get_enemy_states():
 	
 func get_bullets_pos():
 	return m_player_bullets_pos
+	
+func get_enemy_bullets_pos():
+	return m_enemy_bullets_pos
 	
 func get_main_step():
 	return m_main_step_counter

@@ -28,6 +28,8 @@ func _ready():
 func _on_StepButton_pressed():
 	m_battle_core.step(int(m_boom_input.text))
 	m_boom_input.text = "0"
+	m_output.text = ""
+	_on_PrintStateButton_pressed()
 	pass # Replace with function body.
 
 func append_log(content):
@@ -44,6 +46,10 @@ func _on_PrintStateButton_pressed():
 	var enemy_list = m_battle_core.get_enemy_states()
 	for e in enemy_list:
 		append_log("\t" + str(e))
+	append_log("[Enemy Bullet]")
+	var enemy_bullets = m_battle_core.get_enemy_bullets_pos()
+	for b in enemy_bullets:
+		append_log("\t" + str(b))
 
 func get_player_max_hp():
 	return 200
@@ -109,6 +115,15 @@ func get_enemy_attack_pre(type_id):
 		return 3
 	else:
 		return 3
+		
+func get_enemy_attack_bullet_speed(type_id):
+	if type_id == 0:
+		return 0
+	elif type_id == 1:
+		return 3
+	elif type_id == 2:
+		return 0
+	return 10
 
 func get_enemy_move_speed(type_id):
 	if type_id == 0:
@@ -135,6 +150,8 @@ func player_use_boom():
 	pass
 func enemy_spawned(inst_id):
 	print("enemy spawned : ", inst_id)
+func enemy_bullet_spawned(inst_id):
+	print("enemy bullet spawned : ", inst_id)
 func enemy_damaged(inst_id, dmg):
 	print("damaged : ", inst_id, dmg)
 func enemy_die(inst_id):

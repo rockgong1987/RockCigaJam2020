@@ -21,8 +21,10 @@ var m_context = null
 # get_main_spawn_enemy(step_cnt)
 # player_use_boom()
 # player_bullet_spawned(inst_id)
+# player_bullet_die(inst_id)
 # enemy_spawned(inst_id)
 # enemy_bullet_spawned(inst_id)
+# enemy_bullet_die(inst_id)
 # enemy_damaged(inst_id, dmg)
 # enemy_die(inst_id)
 # player_damaged(inst_id, dmg)
@@ -119,6 +121,8 @@ func process_bullets():
 	var index = 0
 	while (index < len(m_player_bullets_pos)):
 		if (process_bullet(index)):
+			var id = m_player_bullets_pos[index][0]
+			m_context.player_bullet_die(id)
 			m_player_bullets_pos.remove(index)
 			index -= 1
 		index += 1
@@ -177,6 +181,8 @@ func process_enemy_bullets():
 	var index = 0
 	while (index < len(m_enemy_bullets_pos)):
 		if process_enemy_bullet(index):
+			var id = m_enemy_bullets_pos[index][0]
+			m_context.enemy_bullet_die(id)
 			m_enemy_bullets_pos.remove(index)
 			index -= 1
 		index += 1

@@ -150,11 +150,14 @@ func player_use_boom():
 	pass
 func player_bullet_spawned(inst_id):
 	print("player bullect : ", inst_id)
-	pass
+func player_bullet_die(inst_id):
+	print("player_bullect_die", inst_id)
 func enemy_spawned(inst_id):
 	print("enemy spawned : ", inst_id)
 func enemy_bullet_spawned(inst_id):
 	print("enemy bullet spawned : ", inst_id)
+func enemy_bullet_die(inst_id):
+	print("enemy bullet die", inst_id)
 func enemy_damaged(inst_id, dmg):
 	print("damaged : ", inst_id, dmg)
 func enemy_die(inst_id):

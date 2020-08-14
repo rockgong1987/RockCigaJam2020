@@ -148,6 +148,9 @@ func get_main_spawn_enemy(step_cnt):
 func player_use_boom():
 	m_boom_cnt -= 1
 	pass
+func player_bullet_spawned(inst_id):
+	print("player bullect : ", inst_id)
+	pass
 func enemy_spawned(inst_id):
 	print("enemy spawned : ", inst_id)
 func enemy_bullet_spawned(inst_id):

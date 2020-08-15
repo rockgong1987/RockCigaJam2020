@@ -117,7 +117,7 @@ margin_left = 911.967
 margin_top = 151.871
 margin_right = 1061.97
 margin_bottom = 195.871
-text = "Request Supply"
+text = "Require Supply"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -127,7 +127,7 @@ margin_left = 1079.46
 margin_top = 151.871
 margin_right = 1218.46
 margin_bottom = 195.871
-text = "Request Box"
+text = "Require Box"
 
 [node name="EatAnt" type="Button" parent="HUD"]
 margin_left = 788.637
@@ -166,10 +166,10 @@ __meta__ = {
 }
 
 [node name="AttrLine_HP" type="Control" parent="UpgradePanel/BG"]
-margin_left = 108.799
-margin_top = 82.7631
-margin_right = 148.799
-margin_bottom = 122.763
+margin_left = 81.8295
+margin_top = 121.719
+margin_right = 121.829
+margin_bottom = 161.719
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -195,10 +195,10 @@ margin_bottom = 17.0
 text = "+"
 
 [node name="AttrLine_ATK" type="Control" parent="UpgradePanel/BG"]
-margin_left = 108.799
-margin_top = 123.744
-margin_right = 148.799
-margin_bottom = 163.744
+margin_left = 82.5786
+margin_top = 161.202
+margin_right = 122.579
+margin_bottom = 201.202
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -224,10 +224,10 @@ margin_bottom = 17.0
 text = "+"
 
 [node name="AttrLine_SPD" type="Control" parent="UpgradePanel/BG"]
-margin_left = 112.362
-margin_top = 171.853
-margin_right = 152.362
-margin_bottom = 211.853
+margin_left = 82.3958
+margin_top = 199.572
+margin_right = 122.396
+margin_bottom = 239.572
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -253,10 +253,10 @@ margin_bottom = 17.0
 text = "+"
 
 [node name="AttrLine_SKL" type="Control" parent="UpgradePanel/BG"]
-margin_left = 112.362
-margin_top = 222.634
-margin_right = 152.362
-margin_bottom = 262.634
+margin_left = 81.6467
+margin_top = 238.366
+margin_right = 121.647
+margin_bottom = 278.366
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -282,10 +282,10 @@ margin_bottom = 17.0
 text = "+"
 
 [node name="GunLine_THR" type="Control" parent="UpgradePanel/BG"]
-margin_left = 352.771
-margin_top = 47.0646
-margin_right = 392.771
-margin_bottom = 87.0646
+margin_left = 347.527
+margin_top = 125.351
+margin_right = 387.527
+margin_bottom = 165.351
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -311,10 +311,10 @@ margin_bottom = 17.0
 text = "+"
 
 [node name="GunLine_DBL" type="Control" parent="UpgradePanel/BG"]
-margin_left = 349.204
-margin_top = 93.4437
-margin_right = 389.204
-margin_bottom = 133.444
+margin_left = 348.497
+margin_top = 162.033
+margin_right = 388.497
+margin_bottom = 202.033
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -340,10 +340,10 @@ margin_bottom = 17.0
 text = "+"
 
 [node name="GunLine_TPL" type="Control" parent="UpgradePanel/BG"]
-margin_left = 350.393
-margin_top = 136.255
-margin_right = 390.393
-margin_bottom = 176.255
+margin_left = 346.857
+margin_top = 200.602
+margin_right = 386.857
+margin_bottom = 240.602
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -369,10 +369,10 @@ margin_bottom = 17.0
 text = "+"
 
 [node name="BoomLine_DMG" type="Control" parent="UpgradePanel/BG"]
-margin_left = 355.15
-margin_top = 287.284
-margin_right = 395.15
-margin_bottom = 327.284
+margin_left = 348.786
+margin_top = 287.991
+margin_right = 388.786
+margin_bottom = 327.991
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -381,7 +381,7 @@ __meta__ = {
 margin_left = -50.5108
 margin_right = -10.5108
 margin_bottom = 14.0
-text = "DBL"
+text = "DMG"
 
 [node name="Value" type="Label" parent="UpgradePanel/BG/BoomLine_DMG"]
 margin_left = -7.85722
@@ -398,10 +398,10 @@ margin_bottom = 17.0
 text = "+"
 
 [node name="BoomLine_RNG" type="Control" parent="UpgradePanel/BG"]
-margin_left = 356.339
-margin_top = 330.096
-margin_right = 396.339
-margin_bottom = 370.096
+margin_left = 349.268
+margin_top = 332.924
+margin_right = 389.268
+margin_bottom = 372.924
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -410,7 +410,7 @@ __meta__ = {
 margin_left = -50.5108
 margin_right = -10.5108
 margin_bottom = 14.0
-text = "TPL"
+text = "RNG"
 
 [node name="Value" type="Label" parent="UpgradePanel/BG/BoomLine_RNG"]
 margin_left = -7.85722
@@ -427,22 +427,25 @@ margin_bottom = 17.0
 text = "+"
 
 [node name="Exp" type="Label" parent="UpgradePanel/BG"]
-margin_left = 57.3264
-margin_top = 3.14981
-margin_right = 97.3264
-margin_bottom = 17.1498
+margin_left = 50.584
+margin_top = 53.3431
+margin_right = 134.584
+margin_bottom = 73.3431
+text = "EXP:1000"
 
 [node name="CostExp" type="Label" parent="UpgradePanel/BG"]
-margin_left = 57.3264
-margin_top = 20.7887
-margin_right = 97.3264
-margin_bottom = 34.7887
+margin_left = 50.584
+margin_top = 78.4735
+margin_right = 177.584
+margin_bottom = 98.4735
+text = "Cost Exp:2000"
 
 [node name="PlayerLevel" type="Label" parent="UpgradePanel/BG"]
-margin_left = 58.3264
-margin_top = 42.7887
-margin_right = 98.3264
-margin_bottom = 56.7887
+margin_left = 32.106
+margin_top = 11.3243
+margin_right = 167.106
+margin_bottom = 31.3243
+text = "Player Level:20"
 __meta__ = {
 "_edit_use_anchors_": false
 }

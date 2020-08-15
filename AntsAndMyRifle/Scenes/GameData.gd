@@ -25,15 +25,15 @@ var test_data = [
 var level_up_need_exp = [0, 100, 200]
 
 var levels = [
-	["Shop0", "This is Shop0"],
-	["Shop1", "This is Shop1"],
-	["Shop2", "This is Shop2"],
-	["Shop3", "This is Shop3"],
-	["Shop4", "This is Shop4"],
-	["Shop5", "This is Shop5"],
-	["Shop6", "This is Shop6"],
-	["Shop7", "This is Shop7"],
-	["Shop88", "This is Shop88"]
+	["Abandoned Workshop", "Level of Danger : 0. An abandoned workshop."],
+	["City Hospital", "Level of Danger : 1. Nobody is there."],
+	["People's Park", "Level of Danger : 2. Looking for someone ?"],
+	["Gym", "Level of Danger : 3. An abandoned gym."],
+	["Primary School", "Level of Danger : 4. No students any more."],
+	["Office", "Level of Danger : 5. Get rid of it."],
+	["Bank", "Level of Danger : 6. High risk, high reward."],
+	["Police Office", "Level of Danger : 7. Get away from it quickly."],
+	["???", "Unknown Object get out from the Data Center.This may be a disaster."]
 ]
 
 var box_level_capacity = [

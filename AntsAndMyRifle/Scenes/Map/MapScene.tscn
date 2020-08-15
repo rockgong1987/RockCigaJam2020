@@ -111,43 +111,46 @@ __meta__ = {
 [node name="Title" type="Label" parent="DetailPanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -39.0858
-margin_top = 33.9411
-margin_right = 41.9142
-margin_bottom = 47.9411
+margin_left = -289.681
+margin_top = 31.0
+margin_right = 285.319
+margin_bottom = 74.0
+rect_pivot_offset = Vector2( 6.25, 0 )
 text = "City Hospital"
 align = 1
+autowrap = true
 
 [node name="Desc" type="Label" parent="DetailPanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -259.5
-margin_top = 94.0
-margin_right = 263.5
-margin_bottom = 404.0
+margin_left = -262.02
+margin_top = 83.9207
+margin_right = 260.98
+margin_bottom = 393.921
 rect_pivot_offset = Vector2( 48.1407, 152.52 )
 text = "City Hospital"
 align = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="NG" type="Button" parent="DetailPanel"]
-margin_left = 75.4182
-margin_top = 456.704
-margin_right = 178.418
-margin_bottom = 506.704
+margin_left = 75.0
+margin_top = 457.0
+margin_right = 284.0
+margin_bottom = 507.0
 text = "Not Yet"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="OK" type="Button" parent="DetailPanel"]
-margin_left = 503.937
-margin_top = 452.928
-margin_right = 606.937
-margin_bottom = 502.928
-text = "OK"
+margin_left = 379.0
+margin_top = 453.0
+margin_right = 607.0
+margin_bottom = 503.0
+text = "I'm Ready"
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -149,7 +149,8 @@ func process_ants():
 				break
 		if state != null:
 			if state[1] == 0:
-				a[1].position = Vector2(a[0] * 10, -2 * a[0])
+				var factor = a[0] % 6
+				a[1].position = Vector2(factor * 10, -2 * factor)
 				a[2] = a[1].global_position
 			elif state[1] == 1:
 				var box_id = state[3]

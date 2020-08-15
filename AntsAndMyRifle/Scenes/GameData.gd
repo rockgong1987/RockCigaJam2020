@@ -1,15 +1,15 @@
 extends Node
 
-var hp_weight = 27
+var hp_weight = 273
 var hp_bias = 210
-var atk_weight = 1
+var atk_weight = 3
 var atk_bias = 6
-var spd_weight = 1
+var spd_weight = 4
 var spd_bias = 9
 var skl_weight = 1
 var skl_bias = 10
 
-var level_add_hp = 1
+var level_add_hp = 20
 var level_add_atk = 1
 var level_add_spd = 1
 var level_add_skl = 1

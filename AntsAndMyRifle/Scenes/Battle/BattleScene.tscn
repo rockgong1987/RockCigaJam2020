@@ -10,5 +10,17 @@ bullet_y_offset = -30.0
 
 [node name="BattleCore" parent="." instance=ExtResource( 1 )]
 
+[node name="BGContainer" type="Node2D" parent="."]
+
 [node name="PlayerPos" type="Position2D" parent="."]
 position = Vector2( 145.285, 599.919 )
+
+[node name="HP" type="Label" parent="."]
+margin_left = 127.251
+margin_top = 449.493
+margin_right = 167.251
+margin_bottom = 463.493
+text = "Hello"
+__meta__ = {
+"_edit_use_anchors_": false
+}

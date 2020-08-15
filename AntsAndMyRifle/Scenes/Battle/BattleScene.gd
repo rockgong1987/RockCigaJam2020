@@ -33,6 +33,7 @@ export(float) var bullet_y_offset = 0.0
 
 onready var m_battle_core = $BattleCore
 onready var m_player_pos = $PlayerPos
+onready var m_player_hp = $HP
 
 var m_timer = 0.0
 var m_step = 1.0 / 60.0
@@ -43,6 +44,23 @@ var m_player_bullet_insts = []
 var m_enemy_bullet_insts = []
 var m_kill_counter = 0
 
+func refresh_hud():
+	m_player_hp.text = str(m_battle_core.get_player_hp()) + "/" + str(m_context.get_player_max_hp())
+	for e in m_enemy_insts:
+		if e[1] == null:
+			continue
+		var state = null
+		for s in m_battle_core.get_enemy_states():
+			if s[0] == e[0]:
+				state = s
+				break
+		var hp = 0
+		var hp_max = 0
+		if state != null:
+			hp = state[2]
+			hp_max = m_context.get_enemy_max_hp(state[1])
+		e[1].set_label(hp, hp_max)
+
 func setup(context):
 	m_context = context
 	if context == null:
@@ -51,7 +69,7 @@ func setup(context):
 	var bg_ps = m_context.get_bg_ps()
 	if bg_ps != null:
 		var inst = bg_ps.instance()
-		self.add_child(inst)
+		$"BGContainer".add_child(inst)
 		inst.position = Vector2.ZERO
 	var player_ps = m_context.get_player_ps()
 	if player_ps != null:
@@ -98,6 +116,7 @@ func _process(delta):
 		m_timer -= m_step
 		m_battle_core.step(0)
 	update_insts()
+	refresh_hud()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

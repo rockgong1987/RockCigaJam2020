@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Home/home_ant.png" type="Texture" id=1]
 
 [node name="HomeAnt" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -0.594604, -32.1086 )
+position = Vector2( 4.76837e-07, -16.0543 )
 texture = ExtResource( 1 )

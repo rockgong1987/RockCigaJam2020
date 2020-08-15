@@ -48,9 +48,13 @@ var m_context = null
 # get_box_count()
 # set_ant_count()
 # set_ant_count()
+export(PackedScene) var box_effect = null
+
 onready var m_home_core = $HomeCore
 onready var m_player_position = $PlayerPos
 onready var m_ant_home_position = $AntHomePos
+onready var m_ant_position = $AntPos
+onready var m_effect_position = $EffectPos
 onready var m_bg_container = $BGContainer
 onready var m_box_container = $BoxPos
 onready var m_box_spawn_pos = $BoxSpawnPos
@@ -165,6 +169,7 @@ func process_ants():
 						b = bo[1]
 						break
 				a[1].global_position = b.global_position
+				b.play_anim()
 			elif state[1] == 3:
 				var t = state[2] * 1.0 / state[4]
 				var y_offset = -sin(t * PI) * 100
@@ -208,6 +213,9 @@ func box_spawned(inst_id):
 func box_die(inst_id):
 	for b in m_box_insts:
 		if b[0] == inst_id:
+			var effect_inst = box_effect.instance()
+			m_effect_position.add_child(effect_inst)
+			effect_inst.global_position = b[1].global_position
 			b[1].queue_free()
 			m_box_insts.erase(b)
 			break
@@ -216,7 +224,7 @@ func ant_spawned(inst_id):
 	var ant_ps = m_context.get_ant_ps()
 	if ant_ps != null:
 		var inst = ant_ps.instance()
-		m_ant_home_position.add_child(inst)
+		m_ant_position.add_child(inst)
 		inst.position = Vector2.ZERO
 		m_ant_insts.append([inst_id, inst, Vector2.ZERO, Vector2.ZERO])
 	pass

@@ -140,6 +140,8 @@ func get_box_home_upgrade_price():
 func get_ant_home_upgrade_price():
 	return m_game_data.ant_upgrade_price(m_player_data.ant_level)
 func home_battle_pressed():
+	if m_map_scene_inst != null:
+		m_map_scene_inst.queue_free()
 	m_map_scene_inst = map_scene_ps.instance()
 	m_map_container.add_child(m_map_scene_inst)
 	m_map_scene_inst.position = Vector2.ZERO
@@ -172,6 +174,8 @@ func on_battle_confirmed(battle_id):
 	if m_map_scene_inst != null:
 		m_map_scene_inst.queue_free()
 		m_map_scene_inst = null
+	if m_battle_scene_inst != null:
+		m_battle_scene_inst.queue_free()
 	m_battle_scene_inst = battle_scene_ps.instance()
 	m_battle_container.add_child(m_battle_scene_inst)
 	m_battle_scene_inst.position = Vector2.ZERO
@@ -198,6 +202,8 @@ func battle_result(win):
 	if m_battle_scene_inst != null:
 		m_battle_scene_inst.queue_free()
 		m_battle_scene_inst = null
+	if m_home_scene_inst != null:
+		m_home_scene_inst.queue_free()
 	m_home_scene_inst = home_scene_ps.instance()
 	m_home_container.add_child(m_home_scene_inst)
 	m_home_scene_inst.position = Vector2.ZERO

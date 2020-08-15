@@ -25,6 +25,10 @@ window/size/width=1280
 window/size/height=720
 window/size/resizable=false
 
+[gui]
+
+theme/custom="res://Assets/MainTheme.tres"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

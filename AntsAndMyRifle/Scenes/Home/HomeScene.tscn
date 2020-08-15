@@ -1,12 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Home/HomeCore.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Home/HomeScene.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Home/HomeBoxEffect.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Home/HomeAntEffect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/MainTheme.tres" type="Theme" id=5]
+[ext_resource path="res://Assets/NotoSansHans-Medium.otf" type="DynamicFontData" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1280, 360 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+outline_size = 2
+outline_color = Color( 0.431373, 0, 0, 1 )
+font_data = ExtResource( 6 )
 
 [node name="HomeScene" type="Node2D"]
 script = ExtResource( 2 )
@@ -44,86 +52,89 @@ shape = SubResource( 1 )
 [node name="HUD" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PlayerExp" type="Label" parent="HUD"]
-margin_left = 48.9994
-margin_top = 30.2906
-margin_right = 88.9994
-margin_bottom = 44.2906
+margin_left = 900.699
+margin_top = 26.727
+margin_right = 947.699
+margin_bottom = 46.727
 text = "Hello"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PlayerGold" type="Label" parent="HUD"]
-margin_left = 49.8903
-margin_top = 62.3629
-margin_right = 89.8903
-margin_bottom = 76.3629
+margin_left = 901.59
+margin_top = 58.7993
+margin_right = 948.59
+margin_bottom = 78.7993
 text = "Hello"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PlayerPart" type="Label" parent="HUD"]
-margin_left = 50.5974
-margin_top = 94.1827
-margin_right = 90.5974
-margin_bottom = 108.183
+visible = false
+margin_left = 902.297
+margin_top = 90.6191
+margin_right = 949.297
+margin_bottom = 110.619
 text = "Hello"
 
 [node name="GachaCD" type="Label" parent="HUD"]
-margin_left = 1158.6
-margin_top = 300.183
-margin_right = 1198.6
-margin_bottom = 314.183
+margin_left = 1045.36
+margin_top = 205.492
+margin_right = 1092.36
+margin_bottom = 225.492
 text = "Hello"
 
 [node name="Battle" type="Button" parent="HUD"]
-margin_left = 1061.95
-margin_top = 24.9452
-margin_right = 1260.95
-margin_bottom = 120.945
+margin_left = 1063.73
+margin_top = 611.157
+margin_right = 1262.73
+margin_bottom = 707.156
+custom_fonts/font = SubResource( 2 )
 text = "Battle"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AntBornRatio" type="Label" parent="HUD"]
-margin_left = 873.506
-margin_top = 459.471
-margin_right = 913.506
-margin_bottom = 473.471
+margin_left = 868.161
+margin_top = 518.27
+margin_right = 908.161
+margin_bottom = 538.27
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ReqSupply" type="Button" parent="HUD"]
-margin_left = 1111.84
-margin_top = 329.633
-margin_right = 1250.84
-margin_bottom = 373.633
+margin_left = 911.967
+margin_top = 151.871
+margin_right = 1061.97
+margin_bottom = 195.871
 text = "Request Supply"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ReqBox" type="Button" parent="HUD"]
-margin_left = 1111.84
-margin_top = 390.214
-margin_right = 1250.84
-margin_bottom = 434.214
+margin_left = 1079.46
+margin_top = 151.871
+margin_right = 1218.46
+margin_bottom = 195.871
 text = "Request Box"
 
 [node name="EatAnt" type="Button" parent="HUD"]
-margin_left = 851.0
-margin_top = 583.0
-margin_right = 1053.0
-margin_bottom = 651.0
-text = "Eat Ant"
+margin_left = 788.637
+margin_top = 606.163
+margin_right = 990.637
+margin_bottom = 674.163
+text = "Sacrifice Ant"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -132,6 +143,11 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 247.487
+margin_top = -32.5269
+margin_right = 247.487
+margin_bottom = -32.5269
+theme = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -432,10 +448,12 @@ __meta__ = {
 }
 
 [node name="UpgradeSwitch" type="Button" parent="."]
-margin_left = 100.797
-margin_top = 60.2441
-margin_right = 124.797
-margin_bottom = 84.2441
+margin_left = 818.941
+margin_top = 31.0
+margin_right = 858.941
+margin_bottom = 70.0
+theme = ExtResource( 5 )
+text = "+"
 __meta__ = {
 "_edit_use_anchors_": false
 }

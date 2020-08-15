@@ -117,7 +117,7 @@ func show_battle_result():
 
 func refresh_hud():
 	m_player_exp_label.text = "EXP : " + str(m_context.get_exp())
-	m_player_gold_label.text = str(m_context.get_gold())
+	m_player_gold_label.text = "Gold : " + str(m_context.get_gold())
 	m_player_part_label.text = str(m_context.get_part())
 	pass
 	

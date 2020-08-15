@@ -49,6 +49,7 @@ var m_context = null
 # set_ant_count()
 # set_ant_count()
 export(PackedScene) var box_effect = null
+export(PackedScene) var ant_effect = null
 
 onready var m_home_core = $HomeCore
 onready var m_player_position = $PlayerPos
@@ -233,6 +234,9 @@ func ant_state_changed(inst_id, old_state, new_state, target_box_id):
 func ant_die(inst_id):
 	for a in m_ant_insts:
 		if a[0] == inst_id:
+			var effect_inst = ant_effect.instance()
+			m_effect_position.add_child(effect_inst)
+			effect_inst.global_position = a[1].global_position
 			a[1].queue_free()
 			m_ant_insts.erase(a)
 			break

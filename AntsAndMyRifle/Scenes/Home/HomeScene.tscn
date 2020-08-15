@@ -63,6 +63,13 @@ margin_right = 90.5974
 margin_bottom = 108.183
 text = "Hello"
 
+[node name="GachaCD" type="Label" parent="HUD"]
+margin_left = 1158.6
+margin_top = 300.183
+margin_right = 1198.6
+margin_bottom = 314.183
+text = "Hello"
+
 [node name="Battle" type="Button" parent="HUD"]
 margin_left = 1061.95
 margin_top = 24.9452
@@ -81,6 +88,23 @@ margin_bottom = 473.471
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ReqSupply" type="Button" parent="HUD"]
+margin_left = 1111.84
+margin_top = 329.633
+margin_right = 1250.84
+margin_bottom = 373.633
+text = "Request Supply"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReqBox" type="Button" parent="HUD"]
+margin_left = 1111.84
+margin_top = 390.214
+margin_right = 1250.84
+margin_bottom = 434.214
+text = "Request Box"
 
 [node name="UpgradePanel" type="Control" parent="."]
 visible = false
@@ -371,4 +395,6 @@ margin_right = 124.797
 margin_bottom = 84.2441
 [connection signal="body_entered" from="BoxActiveZone" to="." method="_on_BoxActiveZone_body_entered"]
 [connection signal="pressed" from="HUD/Battle" to="." method="_on_Battle_pressed"]
+[connection signal="pressed" from="HUD/ReqSupply" to="." method="_on_ReqSupply_pressed"]
+[connection signal="pressed" from="HUD/ReqBox" to="." method="_on_ReqBox_pressed"]
 [connection signal="pressed" from="UpgradeSwitch" to="." method="_on_UpgradeSwitch_pressed"]

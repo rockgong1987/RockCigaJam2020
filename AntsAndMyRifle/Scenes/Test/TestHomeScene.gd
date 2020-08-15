@@ -61,8 +61,21 @@ func set_box_count(val):
 	box_cnt = val
 func get_ant_born_ratio_increase(ant_cnt):
 	return 0.2
+	
+func can_get_box():
+	return get_box_capacity() > get_box_count() and get_gold() >= 0
 
+func gacha():
+	print("gacha")
+	m_home_scene.spawn_box_inst(true)
+	
+func get_empty_box():
+	print("get_empty_box")
+	m_home_scene.spawn_box_inst(false)
+
+var i = 0
 
 func _on_AddBox_pressed():
-	m_home_scene.spawn_box_inst()
+	i += 1
+	m_home_scene.spawn_box_inst(i % 2 == 0)
 	pass # Replace with function body.

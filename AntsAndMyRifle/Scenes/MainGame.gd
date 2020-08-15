@@ -124,13 +124,18 @@ func get_gacha_price():
 	return m_game_data.gacha_price
 func gacha():
 	if m_game_data.gacha_price > m_player_data.gold:
-		return
+		return false
 	m_player_data.gold -= m_game_data.gacha_price
+	m_home_scene_inst.spawn_box_inst(true)
+	return true
 func can_get_box():
 	var box_level = m_player_data.box_level
 	var box_count = m_player_data.box_count
 	var box_capacity = m_game_data.box_level_capacity[box_level]
 	return box_count < box_capacity
+func get_empty_box():
+	m_home_scene_inst.spawn_box_inst(false)
+	return true
 func get_box_home_level():
 	return m_player_data.box_level
 func get_ant_home_level():

@@ -34,6 +34,7 @@ var m_context = null
 # get_part()
 # get_gacha_price()
 # gacha()
+# get_empty_box()
 # can_get_box()
 # get_box_home_level()
 # get_ant_home_level()
@@ -58,6 +59,7 @@ onready var m_player_exp_label = $HUD/PlayerExp
 onready var m_player_gold_label = $HUD/PlayerGold
 onready var m_player_part_label = $HUD/PlayerPart
 onready var m_ant_born_ratio = $HUD/AntBornRatio
+onready var m_gacha_cd_label = $HUD/GachaCD
 
 onready var m_update_panel = $UpgradePanel
 
@@ -147,13 +149,15 @@ func _process(delta):
 		m_timer -= m_step
 	process_ants()
 	m_ant_born_ratio.text = str(m_home_core.get_ant_born_ratio())
+	m_gacha_cd_label.text = str(m_home_core.get_gacha_cd())
 	
-func spawn_box_inst():
+func spawn_box_inst(high):
 	var ps = m_context.get_box_ps()
 	if ps != null:
 		if m_waiting_box != null:
 			m_waiting_box.queue_free()
 		m_waiting_box = ps.instance()
+		m_waiting_box.setup(high)
 		m_box_container.add_child(m_waiting_box)
 		m_waiting_box.global_position = m_box_spawn_pos.global_position
 
@@ -169,6 +173,7 @@ func box_spawned(inst_id):
 		m_box_container.add_child(inst)
 		inst.position = Vector2.ZERO
 		m_box_insts.append([inst_id, inst])
+		inst.setup(false)
 	pass
 func box_die(inst_id):
 	for b in m_box_insts:
@@ -225,4 +230,24 @@ func _on_BoxActiveZone_body_entered(body):
 	print(body.name)
 	if body is RigidBody2D:
 		m_home_core.spawn_box()
+	pass # Replace with function body.
+
+
+func _on_ReqSupply_pressed():
+	if !m_context.can_get_box():
+		return
+	if m_home_core.get_gacha_cd() > 0:
+		return
+	if m_context.gacha():
+		m_home_core.set_gacha_cd(500)
+	pass # Replace with function body.
+
+
+func _on_ReqBox_pressed():
+	if !m_context.can_get_box():
+		return
+	if m_home_core.get_gacha_cd() > 0:
+		return
+	if m_context.get_empty_box():
+		m_home_core.set_gacha_cd(500)
 	pass # Replace with function body.

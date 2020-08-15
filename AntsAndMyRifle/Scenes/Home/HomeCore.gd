@@ -25,6 +25,7 @@ var m_ant_id_counter = 0
 var m_ant_born_ratio = 0.0
 var m_box_states = []
 var m_box_id_counter = 0
+var m_gacha_cd = 0
 
 func setup(context):
 	m_context = context
@@ -101,9 +102,14 @@ func step():
 	if m_context == null:
 		return
 	process_ants()
+	if m_gacha_cd > 0:
+		m_gacha_cd -= 1
 
 func can_spawn_box():
 	return len(m_box_states) < m_context.get_box_capacity()
+	
+func set_gacha_cd(cd):
+	m_gacha_cd = cd
 	
 func spawn_box():
 	if !can_spawn_box():
@@ -137,3 +143,6 @@ func get_box_states():
 	
 func get_ant_born_ratio():
 	return m_ant_born_ratio
+
+func get_gacha_cd():
+	return m_gacha_cd

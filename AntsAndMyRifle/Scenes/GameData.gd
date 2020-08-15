@@ -14,6 +14,8 @@ var level_add_atk = 1
 var level_add_spd = 1
 var level_add_skl = 1
 
+var gacha_price = 100
+
 var test_data = [
 	["hello", "world", 100],
 	["bye", "cruel", 200]

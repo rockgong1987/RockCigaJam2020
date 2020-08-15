@@ -270,7 +270,7 @@ func _on_ReqSupply_pressed():
 	if m_home_core.get_gacha_cd() > 0:
 		return
 	if m_context.gacha():
-		m_home_core.set_gacha_cd(500)
+		m_home_core.set_gacha_cd(200)
 	refresh_hud()
 	pass # Replace with function body.
 
@@ -281,7 +281,7 @@ func _on_ReqBox_pressed():
 	if m_home_core.get_gacha_cd() > 0:
 		return
 	if m_context.get_empty_box():
-		m_home_core.set_gacha_cd(500)
+		m_home_core.set_gacha_cd(200)
 	pass # Replace with function body.
 
 

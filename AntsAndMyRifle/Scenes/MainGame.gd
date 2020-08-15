@@ -128,7 +128,7 @@ func get_level():
 func get_exp_need_to_upgrade():
 	if m_player_data.player_level < 0:
 		return 0
-	return m_player_data.player_level * m_player_data.player_level * 2 + m_player_data.player_level * 127 + 51
+	return m_player_data.player_level * 13 + 140
 func get_gold():
 	return m_player_data.gold
 func get_part():
@@ -224,8 +224,10 @@ func get_enemy_bullet_ps():
 	return load("res://Scenes/Battle/Bullets/EB_0.tscn")
 func battle_result(win):
 	if win:
-		m_last_battle_result = 2000
+		m_last_battle_result = 2000 * (m_battle_id + 1)
 		m_player_data.gold += m_last_battle_result
+	else:
+		m_last_battle_result = 0
 	if m_battle_scene_inst != null:
 		m_battle_scene_inst.queue_free()
 		m_battle_scene_inst = null
@@ -240,7 +242,10 @@ func battle_result(win):
 func get_player_max_hp():
 	return get_attr_hp()
 func get_player_max_cd():
-	return 100 # TODO
+	var result = 100 - get_attr_spd()
+	if result < 5:
+		result = 5
+	return result
 func get_player_atk():
 	return get_attr_atk()
 func get_player_crit_prob():
@@ -257,38 +262,44 @@ func get_player_boom_damage():
 	return 100 # TODO
 func get_enemy_atk(type_id):
 	if type_id == 0:
-		return 10
+		return 10 * (m_battle_id + 1)
 	elif type_id == 1:
-		return 12
+		return 12 * (m_battle_id + 1)
 	elif type_id == 2:
-		return 30
+		return 30 * (m_battle_id + 1)
 	elif type_id == 3:
-		return 100
+		return 50
 	return 1
 func get_enemy_max_hp(type_id):
 	if type_id == 0:
-		return 20
+		return 23 * (m_battle_id + 1)
 	elif type_id == 1:
-		return 15
+		return 17 * (m_battle_id + 1)
 	elif type_id == 2:
-		return 30
+		return 31 * (m_battle_id + 1)
 	elif type_id == 3:
-		return 2000
+		return 9527
 	return 1
 func get_enemy_radius(type_id):
 	return 50
 func get_enemy_attack_range(type_id):
 	if type_id == 1:
 		return 3000
+	elif type_id == 3:
+		return 9000
 	return 0
 func get_enemy_attack_bullet_speed(type_id):
 	if type_id == 1:
 		return 30
+	elif type_id == 3:
+		return 120
 	return 0
 func get_enemy_attack_cd(type_id):
+	if type_id == 3:
+		return 10
 	return 100
 func get_enemy_attack_pre(type_id):
-	return 120
+	return 10
 func get_enemy_move_speed(type_id):
 	if type_id == 0:
 		return 10
@@ -296,13 +307,23 @@ func get_enemy_move_speed(type_id):
 		return 5
 	elif type_id == 2:
 		return 30
-	return 0
+	return 2
 func get_main_spawn_enemy(step_cnt):
-	if step_cnt % 200 == 0:
-		return int(floor(step_cnt / 200)) % 3
-	return null
+	if m_battle_id != 8:
+		if step_cnt >= 200 * 10:
+			return null
+		if step_cnt % 200 == 0:
+			return int(floor(step_cnt / 200)) % 3
+		return null
+	else:
+		if step_cnt == 45:
+			return 3
+		return null
 func get_enemy_total_count():
-	return 10
+	if m_battle_id != 8:
+		return 10
+	else:
+		return 1
 func player_use_boom():
 	if m_player_data.boom_count > 0:
 		m_player_data.boom_count -= 1

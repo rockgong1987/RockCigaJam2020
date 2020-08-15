@@ -4,7 +4,7 @@
 
 [node name="HomeCore" type="Node"]
 script = ExtResource( 1 )
-ant_wait_cd = 60
-ant_go_cd = 60
-ant_eat_cd = 60
-ant_back_cd = 60
+ant_wait_cd = 45
+ant_go_cd = 45
+ant_eat_cd = 300
+ant_back_cd = 45

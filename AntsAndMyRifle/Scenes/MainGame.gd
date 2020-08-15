@@ -278,7 +278,7 @@ func get_enemy_max_hp(type_id):
 	elif type_id == 2:
 		return 31 * (m_battle_id + 1)
 	elif type_id == 3:
-		return 9527
+		return 4000
 	return 1
 func get_enemy_radius(type_id):
 	return 50

@@ -114,6 +114,8 @@ func process_bullet(index):
 	if hit_enemy != null:
 		damage_enemy(hit_enemy[0], m_context.get_player_atk())
 		return true
+	if new_pos > 12000:
+		return true
 	m_player_bullets_pos[index][1] = new_pos
 	return false
 

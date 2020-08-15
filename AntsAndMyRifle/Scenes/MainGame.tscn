@@ -61,5 +61,67 @@ text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HomeContainer" type="Node2D" parent="."]
+
+[node name="MapContainer" type="Node2D" parent="."]
+
+[node name="BattleContainer" type="Node2D" parent="."]
+
+[node name="Setting" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entry" type="Button" parent="Setting"]
+visible = false
+margin_left = 1209.66
+margin_top = 16.0432
+margin_right = 1265.66
+margin_bottom = 49.0432
+text = "Setting"
+
+[node name="Panel" type="Panel" parent="Setting"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.533333 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ResumeButton" type="Button" parent="Setting/Panel"]
+margin_left = 412.724
+margin_top = 212.712
+margin_right = 786.724
+margin_bottom = 330.712
+text = "Resume"
+
+[node name="TitleButton" type="Button" parent="Setting/Panel"]
+margin_left = 415.899
+margin_top = 371.452
+margin_right = 789.899
+margin_bottom = 489.452
+text = "Back to Title Screen"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackToTitleDialog" type="ConfirmationDialog" parent="."]
+margin_right = 200.0
+margin_bottom = 70.0
+popup_exclusive = true
+dialog_text = "Go back to the title screen?"
+
+[node name="QuitDialog" type="ConfirmationDialog" parent="."]
+margin_right = 200.0
+margin_bottom = 70.0
+popup_exclusive = true
+dialog_text = "Quit the game?"
 [connection signal="pressed" from="Title/BG/Enter" to="." method="_on_Enter_pressed"]
 [connection signal="pressed" from="Title/BG/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="Setting/Entry" to="." method="_on_Entry_pressed"]
+[connection signal="pressed" from="Setting/Panel/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="Setting/Panel/TitleButton" to="." method="_on_TitleButton_pressed"]
+[connection signal="confirmed" from="BackToTitleDialog" to="." method="_on_BackToTitleDialog_confirmed"]
+[connection signal="confirmed" from="QuitDialog" to="." method="_on_QuitDialog_confirmed"]

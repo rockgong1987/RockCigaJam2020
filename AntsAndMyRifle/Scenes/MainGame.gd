@@ -11,6 +11,15 @@ onready var m_title_panel = $Title
 onready var m_game_data = $GameData
 onready var m_player_data = $PlayerData
 
+onready var m_home_container = $HomeContainer
+onready var m_map_container = $MapContainer
+onready var m_battle_container = $BattleContainer
+
+onready var m_setting_entry_button = $Setting/Entry
+onready var m_setting_entry_panel = $Setting/Panel
+onready var m_back_to_title_dialog = $BackToTitleDialog
+onready var m_quit_dialog = $QuitDialog
+
 var m_home_scene_inst
 var m_map_scene_inst
 var m_battle_scene_inst
@@ -20,7 +29,6 @@ var m_battle_id = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(m_game_data.test_data)
 	pass # Replace with function body.
 
 
@@ -30,14 +38,15 @@ func _ready():
 
 
 func _on_Exit_pressed():
-	get_tree().quit()
+	m_quit_dialog.popup_centered()
 	pass # Replace with function body.
 
 func _on_Enter_pressed():
 	m_home_scene_inst = home_scene_ps.instance()
-	add_child(m_home_scene_inst)
+	m_home_container.add_child(m_home_scene_inst)
 	m_home_scene_inst.setup(self)
 	m_title_panel.visible = false
+	m_setting_entry_button.visible = true
 	pass # Replace with function body.
 
 # -- home intefaces
@@ -132,7 +141,7 @@ func get_ant_home_upgrade_price():
 	return m_game_data.ant_upgrade_price(m_player_data.ant_level)
 func home_battle_pressed():
 	m_map_scene_inst = map_scene_ps.instance()
-	add_child(m_map_scene_inst)
+	m_map_container.add_child(m_map_scene_inst)
 	m_map_scene_inst.position = Vector2.ZERO
 	m_map_scene_inst.setup(self)
 # -- forward
@@ -164,7 +173,7 @@ func on_battle_confirmed(battle_id):
 		m_map_scene_inst.queue_free()
 		m_map_scene_inst = null
 	m_battle_scene_inst = battle_scene_ps.instance()
-	add_child(m_battle_scene_inst)
+	m_battle_container.add_child(m_battle_scene_inst)
 	m_battle_scene_inst.position = Vector2.ZERO
 	m_battle_scene_inst.setup(self)
 	pass
@@ -190,7 +199,7 @@ func battle_result(win):
 		m_battle_scene_inst.queue_free()
 		m_battle_scene_inst = null
 	m_home_scene_inst = home_scene_ps.instance()
-	add_child(m_home_scene_inst)
+	m_home_container.add_child(m_home_scene_inst)
 	m_home_scene_inst.position = Vector2.ZERO
 	m_home_scene_inst.setup(self)
 # ----forward
@@ -237,3 +246,39 @@ func get_main_spawn_enemy(step_cnt):
 func player_use_boom():
 	if m_player_data.boom_count > 0:
 		m_player_data.boom_count -= 1
+
+
+func _on_Entry_pressed():
+	m_setting_entry_panel.visible = true
+	pass # Replace with function body.
+
+
+func _on_ResumeButton_pressed():
+	m_setting_entry_panel.visible = false
+	pass # Replace with function body.
+
+
+func _on_TitleButton_pressed():
+	m_back_to_title_dialog.popup_centered()
+	pass # Replace with function body.
+
+
+func _on_BackToTitleDialog_confirmed():
+	if m_home_scene_inst != null:
+		m_home_scene_inst.queue_free()
+		m_home_scene_inst = null
+	if m_map_scene_inst != null:
+		m_map_scene_inst.queue_free()
+		m_map_scene_inst = null
+	if m_battle_scene_inst != null:
+		m_battle_scene_inst.queue_free()
+		m_battle_scene_inst = null
+	m_setting_entry_button.visible = false
+	m_title_panel.visible = true
+	m_setting_entry_panel.visible = false
+	pass # Replace with function body.
+
+
+func _on_QuitDialog_confirmed():
+	get_tree().quit()
+	pass # Replace with function body.

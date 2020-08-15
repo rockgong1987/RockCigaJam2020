@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/MainGame.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Map/MapScene.tscn" type="PackedScene" id=2]
@@ -7,6 +7,13 @@
 [ext_resource path="res://Scenes/GameData.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/PlayerData.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/MainTheme.tres" type="Theme" id=7]
+[ext_resource path="res://Assets/NotoSansHans-Medium.otf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 42
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
 
 [node name="MainGame" type="Node"]
 script = ExtResource( 1 )
@@ -37,12 +44,14 @@ __meta__ = {
 [node name="Label" type="Label" parent="Title/BG"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -70.0
+margin_left = -639.0
 margin_top = 184.0
-margin_right = 34.0
-margin_bottom = 198.0
-text = "Ant and My Rifle"
+margin_right = 631.0
+margin_bottom = 373.0
+custom_fonts/font = SubResource( 1 )
+text = "Ants and My Rifle"
 align = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

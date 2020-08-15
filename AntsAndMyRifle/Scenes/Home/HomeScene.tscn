@@ -17,6 +17,9 @@ position = Vector2( 1088, 566 )
 [node name="AntHomePos" type="Position2D" parent="."]
 position = Vector2( 888, 564 )
 
+[node name="BoxPos" type="Position2D" parent="."]
+position = Vector2( 293.668, 557.37 )
+
 [node name="HUD" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -54,6 +57,15 @@ margin_top = 24.9452
 margin_right = 1260.95
 margin_bottom = 120.945
 text = "Battle"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AntBornRatio" type="Label" parent="HUD"]
+margin_left = 873.506
+margin_top = 459.471
+margin_right = 913.506
+margin_bottom = 473.471
 __meta__ = {
 "_edit_use_anchors_": false
 }

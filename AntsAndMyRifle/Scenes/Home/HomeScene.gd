@@ -52,10 +52,12 @@ onready var m_home_core = $HomeCore
 onready var m_player_position = $PlayerPos
 onready var m_ant_home_position = $AntHomePos
 onready var m_bg_container = $BGContainer
+onready var m_box_container = $BoxPos
 
 onready var m_player_exp_label = $HUD/PlayerExp
 onready var m_player_gold_label = $HUD/PlayerGold
 onready var m_player_part_label = $HUD/PlayerPart
+onready var m_ant_born_ratio = $HUD/AntBornRatio
 
 onready var m_update_panel = $UpgradePanel
 
@@ -83,6 +85,11 @@ func setup(context):
 		m_player_inst = ps.instance()
 		m_player_position.add_child(m_player_inst)
 		m_player_inst.position = Vector2.ZERO
+	ps = m_context.get_ant_home_ps()
+	if ps != null:
+		inst = ps.instance()
+		m_ant_home_position.add_child(inst)
+		inst.position = Vector2.ZERO
 	refresh_hud()
 	pass
 
@@ -90,6 +97,41 @@ func refresh_hud():
 	m_player_exp_label.text = str(m_context.get_exp()) + " / " + str(m_context.get_exp_need_to_upgrade()) + " LV." + str(m_context.get_level())
 	m_player_gold_label.text = str(m_context.get_gold())
 	m_player_part_label.text = str(m_context.get_part())
+	pass
+	
+func process_ants():
+	var ant_states = m_home_core.get_ant_states()
+	for a in m_ant_insts:
+		var state = null
+		for s in ant_states:
+			if s[0] == a[0]:
+				state = s
+				break
+		if state != null:
+			if state[1] == 0:
+				a[1].position = Vector2(a[0] * 10, -2 * a[0])
+				a[2] = a[1].global_position
+			elif state[1] == 1:
+				var box_id = state[3]
+				var b = null
+				for bo in m_box_insts:
+					if bo[0] == box_id:
+						b = bo[1]
+						break
+				a[3] = b.global_position
+				var t = state[2] * 1.0 / state[4]
+				a[1].global_position = Vector2(t * a[2].x + (1 - t) * a[3].x, t * a[2].y + (1 - t) * a[3].y)
+			elif state[1] == 2:
+				var box_id = state[3]
+				var b = null
+				for bo in m_box_insts:
+					if bo[0] == box_id:
+						b = bo[1]
+						break
+				a[1].global_position = b.global_position
+			elif state[1] == 3:
+				var t = state[2] * 1.0 / state[4]
+				a[1].global_position = Vector2(t * a[3].x + (1 - t) * a[2].x, t * a[3].y + (1 - t) * a[2].y)
 	pass
 
 func _process(delta):
@@ -99,10 +141,23 @@ func _process(delta):
 	while m_timer > m_step:
 		m_home_core.step()
 		m_timer -= m_step
+	process_ants()
+	m_ant_born_ratio.text = str(m_home_core.get_ant_born_ratio())
 
 func box_spawned(inst_id):
+	var box_ps = m_context.get_box_ps()
+	if box_ps != null:
+		var inst = box_ps.instance()
+		m_box_container.add_child(inst)
+		inst.position = Vector2.ZERO
+		m_box_insts.append([inst_id, inst])
 	pass
 func box_die(inst_id):
+	for b in m_box_insts:
+		if b[0] == inst_id:
+			b[1].queue_free()
+			m_box_insts.erase(b)
+			break
 	pass
 func ant_spawned(inst_id):
 	var ant_ps = m_context.get_ant_ps()
@@ -110,10 +165,16 @@ func ant_spawned(inst_id):
 		var inst = ant_ps.instance()
 		m_ant_home_position.add_child(inst)
 		inst.position = Vector2.ZERO
+		m_ant_insts.append([inst_id, inst, Vector2.ZERO, Vector2.ZERO])
 	pass
 func ant_state_changed(inst_id, old_state, new_state, target_box_id):
 	pass
 func ant_die(inst_id):
+	for a in m_ant_insts:
+		if a[0] == inst_id:
+			a[1].queue_free()
+			m_ant_insts.erase(a)
+			break
 	pass
 
 func get_box_capacity():

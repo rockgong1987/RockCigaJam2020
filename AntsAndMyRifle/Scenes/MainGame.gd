@@ -60,7 +60,7 @@ func get_ant_ps():
 	return load("res://Scenes/Home/HomeAnt.tscn")
 	pass
 func get_ant_home_ps():
-	return load("res://Scenes/Home/HomeAntPool.tscn")
+	return load("res://Scenes/Home/HomeAntHome.tscn")
 	pass
 func get_box_ps():
 	return load("res://Scenes/Home/HomeBox.tscn")

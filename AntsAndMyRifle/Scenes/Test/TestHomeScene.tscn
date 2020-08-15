@@ -1,13 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Home/HomeScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Test/TestHomeScene.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Battle/Backgrounds/BG_0.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Battle/BattlePlayer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Home/HomeAntHome.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Home/HomePlayer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Home/HomeAnt.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Home/Background/BG_0.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Home/HomeBox.tscn" type="PackedScene" id=7]
 
 [node name="TestHomeScene" type="Node"]
 script = ExtResource( 2 )
-bg_ps = ExtResource( 3 )
+bg_ps = ExtResource( 6 )
 p_ps = ExtResource( 4 )
+b_ps = ExtResource( 7 )
+a_ps = ExtResource( 5 )
+ah_ps = ExtResource( 3 )
 
 [node name="HomeScene" parent="." instance=ExtResource( 1 )]

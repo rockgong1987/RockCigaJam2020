@@ -2,13 +2,16 @@ extends Node
 
 export(PackedScene) var bg_ps
 export(PackedScene) var p_ps
+export(PackedScene) var b_ps
+export(PackedScene) var a_ps
+export(PackedScene) var ah_ps
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 onready var m_home_scene = $HomeScene
 
 var ant_cnt = 3
-var box_cnt = 2
+var box_cnt = 12
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	m_home_scene.setup(self)
@@ -36,11 +39,11 @@ func get_home_bg_ps():
 func get_home_player_ps():
 	return p_ps
 func get_ant_ps():
-	return p_ps
+	return a_ps
 func get_ant_home_ps():
-	return p_ps
+	return ah_ps
 func get_box_ps():
-	return p_ps
+	return b_ps
 func get_drone_ps():
 	return p_ps
 

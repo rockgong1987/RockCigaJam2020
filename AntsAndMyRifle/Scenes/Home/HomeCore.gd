@@ -21,7 +21,7 @@ export(int) var ant_back_cd = 0
 
 var m_ant_states = []
 var m_ant_id_counter = 0
-# [id, step, cd, target_box_id]
+# [id, step, cd, target_box_id, max_cd]
 var m_ant_born_ratio = 0.0
 var m_box_states = []
 var m_box_id_counter = 0
@@ -38,7 +38,7 @@ func setup(context):
 		spawn_ant()
 	
 func spawn_ant():
-	m_ant_states.append([m_ant_id_counter, 0, ant_wait_cd, null])
+	m_ant_states.append([m_ant_id_counter, 0, ant_wait_cd, null, ant_wait_cd])
 	m_context.set_ant_count(len(m_ant_states))
 	m_context.ant_spawned(m_ant_id_counter)
 	m_ant_id_counter += 1
@@ -63,11 +63,13 @@ func process_ants():
 					ant[1] = 1
 					ant[2] = ant_go_cd
 					ant[3] = box_id
+					ant[4] = ant_go_cd
 				else:
 					ant[2] = ant_wait_cd
 			elif ant[1] == 1:
 				ant[1] = 2
 				ant[2] = ant_eat_cd
+				ant[4] = ant_eat_cd
 			elif ant[1] == 2:
 				var add_ratio = m_context.get_ant_born_ratio_increase(len(m_ant_states))
 				var new_ratio = add_ratio + m_ant_born_ratio
@@ -86,10 +88,12 @@ func process_ants():
 				m_ant_born_ratio = new_ratio
 				ant[1] = 3
 				ant[2] = ant_back_cd
+				ant[4] = ant_back_cd
 			else:
 				ant[1] = 0
 				ant[2] = ant_wait_cd
 				ant[3] = null
+				ant[4] = ant_wait_cd
 			if old_state != ant[1]:
 				m_context.ant_state_changed(ant[0], old_state, ant[1], ant[3])
 	

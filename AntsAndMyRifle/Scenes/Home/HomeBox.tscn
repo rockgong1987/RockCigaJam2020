@@ -31,5 +31,6 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
+visible = false
 local_coords = false
 process_material = SubResource( 2 )

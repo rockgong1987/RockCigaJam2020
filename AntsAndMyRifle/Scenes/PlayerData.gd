@@ -12,7 +12,7 @@ var boom_rng = 1
 
 var player_exp = 0
 var player_level = 1
-var gold = 0
+var gold = 1000
 var part = 0
 var boom_count = 0
 

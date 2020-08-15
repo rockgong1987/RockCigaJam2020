@@ -107,8 +107,8 @@ func refresh_hud():
 func refresh_upgrade_panel():
 	$"UpgradePanel/BG/AttrLine_HP/Value".text = str(m_context.get_attr_hp())
 	$"UpgradePanel/BG/AttrLine_ATK/Value".text = str(m_context.get_attr_atk())
-	$"UpgradePanel/BG/AttrLine_SPD/Value".text = str(m_context.get_attr_atk())
-	$"UpgradePanel/BG/AttrLine_SKL/Value".text = str(m_context.get_attr_atk())
+	$"UpgradePanel/BG/AttrLine_SPD/Value".text = str(m_context.get_attr_spd())
+	$"UpgradePanel/BG/AttrLine_SKL/Value".text = str(m_context.get_attr_skl())
 	$"UpgradePanel/BG/GunLine_THR/Value".text = str(m_context.get_gun_thr())
 	$"UpgradePanel/BG/GunLine_DBL/Value".text = str(m_context.get_gun_dbl())
 	$"UpgradePanel/BG/GunLine_TPL/Value".text = str(m_context.get_gun_tpl())
@@ -192,7 +192,6 @@ func box_spawned(inst_id):
 		m_box_container.add_child(inst)
 		inst.position = Vector2.ZERO
 		m_box_insts.append([inst_id, inst])
-		inst.setup(false)
 	pass
 func box_die(inst_id):
 	for b in m_box_insts:
@@ -260,6 +259,7 @@ func _on_ReqSupply_pressed():
 		return
 	if m_context.gacha():
 		m_home_core.set_gacha_cd(500)
+	refresh_hud()
 	pass # Replace with function body.
 
 

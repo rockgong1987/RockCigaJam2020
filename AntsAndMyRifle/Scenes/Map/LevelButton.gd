@@ -6,6 +6,9 @@ var m_battle_id
 
 var m_mouse_in = false
 
+func _ready():
+	$AnimationPlayer.play("default")
+
 func setup(context, battle_id):
 	m_context = context
 	if context == null:

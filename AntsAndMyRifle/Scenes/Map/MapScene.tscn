@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Assets/Battle/battle_bg.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Map/map_bg.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Map/MapScene.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Map/LevelButton.tscn" type="PackedScene" id=3]
 

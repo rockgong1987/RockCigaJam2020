@@ -213,7 +213,7 @@ func get_battle_info(battle_id):
 # == battle
 
 func get_bg_ps():
-	return load("res://Scenes/Home/Background/BG_0.tscn")
+	return load("res://Scenes/Battle/Backgrounds/BG_0.tscn")
 func get_player_ps():
 	return load("res://Scenes/Home/HomePlayer.tscn")
 func get_enemy_ps(type_id):

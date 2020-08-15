@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Assets/Battle/battle_bg.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Battle/battle_bg_2.png" type="Texture" id=1]
 
 [node name="BG_0" type="Node2D"]
 

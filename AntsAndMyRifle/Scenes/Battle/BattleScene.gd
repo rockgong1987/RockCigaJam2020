@@ -6,6 +6,7 @@ var m_context
 # get_enemy_ps(type_id)
 # get_player_bullet_ps()
 # get_enemy_bullet_ps()
+# get_enemy_total_count()
 # battle_result(win)
 # ----forward
 # get_player_max_hp()
@@ -40,6 +41,7 @@ var m_player_inst = null
 var m_enemy_insts = []
 var m_player_bullet_insts = []
 var m_enemy_bullet_insts = []
+var m_kill_counter = 0
 
 func setup(context):
 	m_context = context
@@ -147,11 +149,12 @@ func enemy_bullet_die(inst_id):
 func enemy_damaged(inst_id, dmg):
 	pass
 func enemy_die(inst_id):
+	m_kill_counter += 1
 	for b in m_enemy_insts:
 		if b[0] == inst_id:
 			b[1].queue_free()
 			break
-	if len(m_battle_core.get_enemy_states()) == 0:
+	if m_context.get_enemy_total_count() <= m_kill_counter:
 		m_context.battle_result(true)
 	pass
 func player_damaged(inst_id, dmg):

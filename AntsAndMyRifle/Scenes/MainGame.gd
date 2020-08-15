@@ -258,13 +258,17 @@ func get_player_boom_damage():
 func get_enemy_atk(type_id):
 	return 100 # TODO
 func get_enemy_max_hp(type_id):
-	return 1 # TODO
+	return 30 # TODO
 func get_enemy_radius(type_id):
 	return 50
 func get_enemy_attack_range(type_id):
-	return 100 * type_id + 2
+	if type_id == 1:
+		return 3000
+	return 0
 func get_enemy_attack_bullet_speed(type_id):
-	return 10 * type_id + 2
+	if type_id == 1:
+		return 30
+	return 0
 func get_enemy_attack_cd(type_id):
 	return 500
 func get_enemy_attack_pre(type_id):
@@ -278,11 +282,11 @@ func get_enemy_move_speed(type_id):
 		return 30
 	return 0
 func get_main_spawn_enemy(step_cnt):
-	if step_cnt > 1000:
-		return null
 	if step_cnt % 200 == 0:
 		return int(floor(step_cnt / 200)) % 3
 	return null
+func get_enemy_total_count():
+	return 10
 func player_use_boom():
 	if m_player_data.boom_count > 0:
 		m_player_data.boom_count -= 1

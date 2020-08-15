@@ -437,6 +437,7 @@ margin_top = 128.145
 margin_right = 970.963
 margin_bottom = 484.145
 popup_exclusive = true
+window_title = "Battle Result"
 [connection signal="body_entered" from="BoxActiveZone" to="." method="_on_BoxActiveZone_body_entered"]
 [connection signal="pressed" from="HUD/Battle" to="." method="_on_Battle_pressed"]
 [connection signal="pressed" from="HUD/ReqSupply" to="." method="_on_ReqSupply_pressed"]

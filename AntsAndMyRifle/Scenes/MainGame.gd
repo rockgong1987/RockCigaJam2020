@@ -215,13 +215,13 @@ func get_battle_info(battle_id):
 func get_bg_ps():
 	return load("res://Scenes/Battle/Backgrounds/BG_0.tscn")
 func get_player_ps():
-	return load("res://Scenes/Home/HomePlayer.tscn")
+	return load("res://Scenes/Battle/BattlePlayer.tscn")
 func get_enemy_ps(type_id):
-	return load("res://Scenes/Battle/Enemies/Enemy_0.tscn")
+	return load("res://Scenes/Battle/Enemies/Enemy_" + str(type_id) + ".tscn")
 func get_player_bullet_ps():
 	return load("res://Scenes/Battle/Bullets/PB_0.tscn")
 func get_enemy_bullet_ps():
-	return load("res://Scenes/Battle/Bullets/EB_0.tscn")
+	return load("res://Scenes/Battle/Bullets/PB_0.tscn")
 func battle_result(win):
 	if win:
 		m_last_battle_result = 2000 * (m_battle_id + 1)

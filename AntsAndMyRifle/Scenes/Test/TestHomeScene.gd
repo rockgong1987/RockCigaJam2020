@@ -31,9 +31,9 @@ func get_gold():
 func get_part():
 	return 550
 
-func get_bg_ps():
+func get_home_bg_ps():
 	return bg_ps
-func get_player_ps():
+func get_home_player_ps():
 	return p_ps
 func get_ant_ps():
 	return p_ps

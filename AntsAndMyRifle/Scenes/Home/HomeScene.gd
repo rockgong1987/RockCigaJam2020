@@ -1,8 +1,8 @@
 extends Node2D
 
 var m_context = null
-# get_bg_ps()
-# get_player_ps()
+# get_home_bg_ps()
+# get_home_player_ps()
 # get_ant_ps()
 # get_ant_home_ps()
 # get_box_ps()
@@ -39,6 +39,7 @@ var m_context = null
 # get_ant_home_level()
 # get_box_home_upgrade_price()
 # get_ant_home_upgrade_price()
+# home_battle_pressed()
 # -- forward
 # get_box_capacity()
 # get_ant_capacity()
@@ -70,13 +71,13 @@ func setup(context):
 	if context == null:
 		return
 	m_home_core.setup(self)
-	var ps = m_context.get_bg_ps()
+	var ps = m_context.get_home_bg_ps()
 	var inst = null
 	if ps != null:
 		inst = ps.instance()
 		m_bg_container.add_child(inst)
 		inst.position = Vector2.ZERO
-	ps = m_context.get_player_ps()
+	ps = m_context.get_home_player_ps()
 	m_player_inst = null
 	if ps != null:
 		m_player_inst = ps.instance()
@@ -133,4 +134,9 @@ func get_ant_born_ratio_increase(ant_cnt):
 
 func _on_UpgradeSwitch_pressed():
 	m_update_panel.visible = !m_update_panel.visible
+	pass # Replace with function body.
+
+
+func _on_Battle_pressed():
+	m_context.home_battle_pressed()
 	pass # Replace with function body.

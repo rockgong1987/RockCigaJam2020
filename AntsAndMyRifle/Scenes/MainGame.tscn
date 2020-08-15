@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/MainGame.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Map/MapScene.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Home/HomeScene.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Battle/BattleScene.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/GameData.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/PlayerData.tscn" type="PackedScene" id=6]
+
+[node name="MainGame" type="Node"]
+script = ExtResource( 1 )
+home_scene_ps = ExtResource( 3 )
+map_scene_ps = ExtResource( 2 )
+battle_scene_ps = ExtResource( 4 )
+
+[node name="GameData" parent="." instance=ExtResource( 5 )]
+
+[node name="PlayerData" parent="." instance=ExtResource( 6 )]
+
+[node name="Title" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="ColorRect" parent="Title"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.14902, 0.145098, 0.156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Title/BG"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -70.0
+margin_top = 184.0
+margin_right = 34.0
+margin_bottom = 198.0
+text = "Ant and My Rifle"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Enter" type="Button" parent="Title/BG"]
+margin_left = 446.496
+margin_top = 498.936
+margin_right = 825.496
+margin_bottom = 578.936
+text = "Start Game"
+
+[node name="Exit" type="Button" parent="Title/BG"]
+margin_left = 448.532
+margin_top = 591.858
+margin_right = 825.532
+margin_bottom = 671.858
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Title/BG/Enter" to="." method="_on_Enter_pressed"]
+[connection signal="pressed" from="Title/BG/Exit" to="." method="_on_Exit_pressed"]

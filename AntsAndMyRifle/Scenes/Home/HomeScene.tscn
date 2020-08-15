@@ -48,6 +48,16 @@ margin_right = 90.5974
 margin_bottom = 108.183
 text = "Hello"
 
+[node name="Battle" type="Button" parent="HUD"]
+margin_left = 1061.95
+margin_top = 24.9452
+margin_right = 1260.95
+margin_bottom = 120.945
+text = "Battle"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="UpgradePanel" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
@@ -335,4 +345,5 @@ margin_left = 100.797
 margin_top = 60.2441
 margin_right = 124.797
 margin_bottom = 84.2441
+[connection signal="pressed" from="HUD/Battle" to="." method="_on_Battle_pressed"]
 [connection signal="pressed" from="UpgradeSwitch" to="." method="_on_UpgradeSwitch_pressed"]

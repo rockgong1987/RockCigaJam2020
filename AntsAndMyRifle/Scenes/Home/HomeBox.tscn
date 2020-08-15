@@ -21,6 +21,7 @@ scale = 3.0
 color = Color( 0.917647, 1, 0, 1 )
 
 [node name="HomeAnt" type="RigidBody2D"]
+gravity_scale = 5.0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

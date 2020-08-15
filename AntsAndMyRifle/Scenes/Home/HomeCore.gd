@@ -120,20 +120,24 @@ func spawn_box():
 	m_context.set_box_count(len(m_box_states))
 
 func get_killable_ant_id():
+	if len(m_ant_states) <= 1:
+		return null
 	for ant in m_ant_states:
-		if ant.step == 0:
+		if ant[1] == 0:
 			return ant[0]
 	return null
 
 func kill_ant():
 	var ant_id = get_killable_ant_id()
 	if ant_id == null:
-		return
+		return false
 	for ant in m_ant_states:
 		if ant[0] == ant_id:
 			m_ant_states.erase(ant)
 			m_context.set_ant_count(len(m_ant_states))
-	pass
+			m_context.ant_die(ant_id)
+			return true
+	return false
 
 func get_ant_states():
 	return m_ant_states

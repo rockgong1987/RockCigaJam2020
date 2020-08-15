@@ -7,7 +7,7 @@ var skl_level = 1
 var gun_thr = 1
 var gun_dbl = 1
 var gun_tpl = 1
-var boom_atk = 1
+var boom_dmg = 1
 var boom_rng = 1
 
 var player_exp = 0

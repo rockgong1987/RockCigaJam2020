@@ -95,13 +95,32 @@ func setup(context):
 		m_ant_home_position.add_child(inst)
 		inst.position = Vector2.ZERO
 	refresh_hud()
+	refresh_upgrade_panel()
 	pass
 
 func refresh_hud():
-	m_player_exp_label.text = str(m_context.get_exp()) + " / " + str(m_context.get_exp_need_to_upgrade()) + " LV." + str(m_context.get_level())
+	m_player_exp_label.text = "EXP : " + str(m_context.get_exp())
 	m_player_gold_label.text = str(m_context.get_gold())
 	m_player_part_label.text = str(m_context.get_part())
 	pass
+	
+func refresh_upgrade_panel():
+	$"UpgradePanel/BG/AttrLine_HP/Value".text = str(m_context.get_attr_hp())
+	$"UpgradePanel/BG/AttrLine_ATK/Value".text = str(m_context.get_attr_atk())
+	$"UpgradePanel/BG/AttrLine_SPD/Value".text = str(m_context.get_attr_atk())
+	$"UpgradePanel/BG/AttrLine_SKL/Value".text = str(m_context.get_attr_atk())
+	$"UpgradePanel/BG/GunLine_THR/Value".text = str(m_context.get_gun_thr())
+	$"UpgradePanel/BG/GunLine_DBL/Value".text = str(m_context.get_gun_dbl())
+	$"UpgradePanel/BG/GunLine_TPL/Value".text = str(m_context.get_gun_tpl())
+	$"UpgradePanel/BG/BoomLine_DMG/Value".text = str(m_context.get_boom_dmg())
+	$"UpgradePanel/BG/BoomLine_RNG/Value".text = str(m_context.get_boom_rng())
+	$"UpgradePanel/BG/Exp".text = "EXP : " + str(m_context.get_exp())
+	$"UpgradePanel/BG/CostExp".text = "Cost EXP : " + str(m_context.get_exp_need_to_upgrade())
+	if exp_enough():
+		$"UpgradePanel/BG/CostExp".modulate = Color(1, 1, 1, 1)
+	else:
+		$"UpgradePanel/BG/CostExp".modulate = Color(1, 0.7, 0.7, 0.7)
+	$"UpgradePanel/BG/PlayerLevel".text = "Player Level : " + str(m_context.get_level())
 	
 func process_ants():
 	var ant_states = m_home_core.get_ant_states()
@@ -218,6 +237,7 @@ func get_ant_born_ratio_increase(ant_cnt):
 
 func _on_UpgradeSwitch_pressed():
 	m_update_panel.visible = !m_update_panel.visible
+	refresh_upgrade_panel()
 	pass # Replace with function body.
 
 
@@ -250,4 +270,66 @@ func _on_ReqBox_pressed():
 		return
 	if m_context.get_empty_box():
 		m_home_core.set_gacha_cd(500)
+	pass # Replace with function body.
+
+
+func _on_EatAnt_pressed():
+	if m_home_core.kill_ant():
+		m_context.eat_ant()
+		refresh_hud()
+		refresh_upgrade_panel()
+	pass # Replace with function body.
+	
+func exp_enough():
+	return m_context.get_exp() >= m_context.get_exp_need_to_upgrade()
+
+func _on_Button_HP_pressed():
+	if exp_enough():
+		m_context.add_attr_hp()
+		refresh_hud()
+		refresh_upgrade_panel()
+	pass # Replace with function body.
+
+
+func _on_Button_ATK_pressed():
+	if exp_enough():
+		m_context.add_attr_atk()
+		refresh_hud()
+		refresh_upgrade_panel()
+	pass # Replace with function body.
+
+
+func _on_Button_SPD_pressed():
+	if exp_enough():
+		m_context.add_attr_spd()
+		refresh_hud()
+		refresh_upgrade_panel()
+	pass # Replace with function body.
+
+
+func _on_Button_SKL_pressed():
+	if exp_enough():
+		m_context.add_attr_skl()
+		refresh_hud()
+		refresh_upgrade_panel()
+	pass # Replace with function body.
+
+
+func _on_Button_THR_pressed():
+	pass # Replace with function body.
+
+
+func _on_Button_DBL_pressed():
+	pass # Replace with function body.
+
+
+func _on_Button_TPL_pressed():
+	pass # Replace with function body.
+
+
+func _on_Button_DMG_pressed():
+	pass # Replace with function body.
+
+
+func _on_Button_RNG_pressed():
 	pass # Replace with function body.

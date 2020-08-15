@@ -55,6 +55,9 @@ margin_top = 62.3629
 margin_right = 89.8903
 margin_bottom = 76.3629
 text = "Hello"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PlayerPart" type="Label" parent="HUD"]
 margin_left = 50.5974
@@ -106,6 +109,16 @@ margin_right = 1250.84
 margin_bottom = 434.214
 text = "Request Box"
 
+[node name="EatAnt" type="Button" parent="HUD"]
+margin_left = 851.0
+margin_top = 583.0
+margin_right = 1053.0
+margin_bottom = 651.0
+text = "Eat Ant"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="UpgradePanel" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
@@ -128,10 +141,10 @@ __meta__ = {
 }
 
 [node name="AttrLine_HP" type="Control" parent="UpgradePanel/BG"]
-margin_left = 107.799
-margin_top = 42.7631
-margin_right = 147.799
-margin_bottom = 82.7631
+margin_left = 108.799
+margin_top = 82.7631
+margin_right = 148.799
+margin_bottom = 122.763
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -149,7 +162,7 @@ margin_right = 32.1428
 margin_bottom = 12.8775
 text = "15"
 
-[node name="Button" type="Button" parent="UpgradePanel/BG/AttrLine_HP"]
+[node name="Button_HP" type="Button" parent="UpgradePanel/BG/AttrLine_HP"]
 margin_left = 49.0
 margin_top = -3.0
 margin_right = 89.0
@@ -157,10 +170,10 @@ margin_bottom = 17.0
 text = "+"
 
 [node name="AttrLine_ATK" type="Control" parent="UpgradePanel/BG"]
-margin_left = 107.799
-margin_top = 83.7445
-margin_right = 147.799
-margin_bottom = 123.744
+margin_left = 108.799
+margin_top = 123.744
+margin_right = 148.799
+margin_bottom = 163.744
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -178,7 +191,7 @@ margin_right = 32.1428
 margin_bottom = 12.8775
 text = "15"
 
-[node name="Button" type="Button" parent="UpgradePanel/BG/AttrLine_ATK"]
+[node name="Button_ATK" type="Button" parent="UpgradePanel/BG/AttrLine_ATK"]
 margin_left = 49.0
 margin_top = -3.0
 margin_right = 89.0
@@ -186,10 +199,10 @@ margin_bottom = 17.0
 text = "+"
 
 [node name="AttrLine_SPD" type="Control" parent="UpgradePanel/BG"]
-margin_left = 111.362
-margin_top = 131.853
-margin_right = 151.362
-margin_bottom = 171.853
+margin_left = 112.362
+margin_top = 171.853
+margin_right = 152.362
+margin_bottom = 211.853
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -207,36 +220,36 @@ margin_right = 32.1428
 margin_bottom = 12.8775
 text = "15"
 
-[node name="Button" type="Button" parent="UpgradePanel/BG/AttrLine_SPD"]
+[node name="Button_SPD" type="Button" parent="UpgradePanel/BG/AttrLine_SPD"]
 margin_left = 49.0
 margin_top = -3.0
 margin_right = 89.0
 margin_bottom = 17.0
 text = "+"
 
-[node name="AttrLine_SPD2" type="Control" parent="UpgradePanel/BG"]
-margin_left = 111.362
-margin_top = 182.634
-margin_right = 151.362
-margin_bottom = 222.634
+[node name="AttrLine_SKL" type="Control" parent="UpgradePanel/BG"]
+margin_left = 112.362
+margin_top = 222.634
+margin_right = 152.362
+margin_bottom = 262.634
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="Label" parent="UpgradePanel/BG/AttrLine_SPD2"]
+[node name="Name" type="Label" parent="UpgradePanel/BG/AttrLine_SKL"]
 margin_left = -50.5108
 margin_right = -10.5108
 margin_bottom = 14.0
 text = "SKL"
 
-[node name="Value" type="Label" parent="UpgradePanel/BG/AttrLine_SPD2"]
+[node name="Value" type="Label" parent="UpgradePanel/BG/AttrLine_SKL"]
 margin_left = -7.85722
 margin_top = -1.12246
 margin_right = 32.1428
 margin_bottom = 12.8775
 text = "15"
 
-[node name="Button" type="Button" parent="UpgradePanel/BG/AttrLine_SPD2"]
+[node name="Button_SKL" type="Button" parent="UpgradePanel/BG/AttrLine_SKL"]
 margin_left = 49.0
 margin_top = -3.0
 margin_right = 89.0
@@ -265,7 +278,7 @@ margin_right = 32.1428
 margin_bottom = 12.8775
 text = "15"
 
-[node name="Button" type="Button" parent="UpgradePanel/BG/GunLine_THR"]
+[node name="Button_THR" type="Button" parent="UpgradePanel/BG/GunLine_THR"]
 margin_left = 49.0
 margin_top = -3.0
 margin_right = 89.0
@@ -294,7 +307,7 @@ margin_right = 32.1428
 margin_bottom = 12.8775
 text = "15"
 
-[node name="Button" type="Button" parent="UpgradePanel/BG/GunLine_DBL"]
+[node name="Button_DBL" type="Button" parent="UpgradePanel/BG/GunLine_DBL"]
 margin_left = 49.0
 margin_top = -3.0
 margin_right = 89.0
@@ -323,7 +336,7 @@ margin_right = 32.1428
 margin_bottom = 12.8775
 text = "15"
 
-[node name="Button" type="Button" parent="UpgradePanel/BG/GunLine_TPL"]
+[node name="Button_TPL" type="Button" parent="UpgradePanel/BG/GunLine_TPL"]
 margin_left = 49.0
 margin_top = -3.0
 margin_right = 89.0
@@ -352,7 +365,7 @@ margin_right = 32.1428
 margin_bottom = 12.8775
 text = "15"
 
-[node name="Button" type="Button" parent="UpgradePanel/BG/BoomLine_DMG"]
+[node name="Button_DMG" type="Button" parent="UpgradePanel/BG/BoomLine_DMG"]
 margin_left = 49.0
 margin_top = -3.0
 margin_right = 89.0
@@ -381,12 +394,33 @@ margin_right = 32.1428
 margin_bottom = 12.8775
 text = "15"
 
-[node name="Button" type="Button" parent="UpgradePanel/BG/BoomLine_RNG"]
+[node name="Button_RNG" type="Button" parent="UpgradePanel/BG/BoomLine_RNG"]
 margin_left = 49.0
 margin_top = -3.0
 margin_right = 89.0
 margin_bottom = 17.0
 text = "+"
+
+[node name="Exp" type="Label" parent="UpgradePanel/BG"]
+margin_left = 57.3264
+margin_top = 3.14981
+margin_right = 97.3264
+margin_bottom = 17.1498
+
+[node name="CostExp" type="Label" parent="UpgradePanel/BG"]
+margin_left = 57.3264
+margin_top = 20.7887
+margin_right = 97.3264
+margin_bottom = 34.7887
+
+[node name="PlayerLevel" type="Label" parent="UpgradePanel/BG"]
+margin_left = 58.3264
+margin_top = 42.7887
+margin_right = 98.3264
+margin_bottom = 56.7887
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="UpgradeSwitch" type="Button" parent="."]
 margin_left = 100.797
@@ -397,4 +431,14 @@ margin_bottom = 84.2441
 [connection signal="pressed" from="HUD/Battle" to="." method="_on_Battle_pressed"]
 [connection signal="pressed" from="HUD/ReqSupply" to="." method="_on_ReqSupply_pressed"]
 [connection signal="pressed" from="HUD/ReqBox" to="." method="_on_ReqBox_pressed"]
+[connection signal="pressed" from="HUD/EatAnt" to="." method="_on_EatAnt_pressed"]
+[connection signal="pressed" from="UpgradePanel/BG/AttrLine_HP/Button_HP" to="." method="_on_Button_HP_pressed"]
+[connection signal="pressed" from="UpgradePanel/BG/AttrLine_ATK/Button_ATK" to="." method="_on_Button_ATK_pressed"]
+[connection signal="pressed" from="UpgradePanel/BG/AttrLine_SPD/Button_SPD" to="." method="_on_Button_SPD_pressed"]
+[connection signal="pressed" from="UpgradePanel/BG/AttrLine_SKL/Button_SKL" to="." method="_on_Button_SKL_pressed"]
+[connection signal="pressed" from="UpgradePanel/BG/GunLine_THR/Button_THR" to="." method="_on_Button_THR_pressed"]
+[connection signal="pressed" from="UpgradePanel/BG/GunLine_DBL/Button_DBL" to="." method="_on_Button_DBL_pressed"]
+[connection signal="pressed" from="UpgradePanel/BG/GunLine_TPL/Button_TPL" to="." method="_on_Button_TPL_pressed"]
+[connection signal="pressed" from="UpgradePanel/BG/BoomLine_DMG/Button_DMG" to="." method="_on_Button_DMG_pressed"]
+[connection signal="pressed" from="UpgradePanel/BG/BoomLine_RNG/Button_RNG" to="." method="_on_Button_RNG_pressed"]
 [connection signal="pressed" from="UpgradeSwitch" to="." method="_on_UpgradeSwitch_pressed"]

@@ -72,18 +72,26 @@ func get_attr_hp():
 	return m_game_data.hp_weight * m_player_data.hp_level + m_game_data.hp_bias + m_game_data.level_add_hp * m_player_data.player_level
 func add_attr_hp():
 	m_player_data.hp_level += 1
+	m_player_data.player_exp -= get_exp_need_to_upgrade()
+	m_player_data.player_level += 1
 func get_attr_atk():
 	return m_game_data.atk_weight * m_player_data.atk_level + m_game_data.atk_bias + m_game_data.level_add_atk * m_player_data.player_level
 func add_attr_atk():
 	m_player_data.atk_level += 1
+	m_player_data.player_exp -= get_exp_need_to_upgrade()
+	m_player_data.player_level += 1
 func get_attr_spd():
 	return m_game_data.spd_weight * m_player_data.spd_level + m_game_data.spd_bias + m_game_data.level_add_spd * m_player_data.player_level
 func add_attr_spd():
 	m_player_data.spd_level += 1
+	m_player_data.player_exp -= get_exp_need_to_upgrade()
+	m_player_data.player_level += 1
 func get_attr_skl():
 	return m_game_data.skl_weight * m_player_data.skl_level + m_game_data.skl_bias + m_game_data.level_add_skl * m_player_data.player_level
 func add_attr_skl():
 	m_player_data.skl_level += 1
+	m_player_data.player_exp -= get_exp_need_to_upgrade()
+	m_player_data.player_level += 1
 func get_gun_thr():
 	return m_player_data.gun_thr
 func add_gun_thr():
@@ -100,6 +108,10 @@ func get_boom_atk():
 	return m_player_data.boom_atk
 func add_boom_atk():
 	m_player_data.boom_atk += 1
+func get_boom_dmg():
+	return m_player_data.boom_dmg
+func add_boom_dmg():
+	m_player_data.boom_dmg += 1
 func get_boom_rng():
 	return m_player_data.boom_rng
 func add_boom_rng():
@@ -113,9 +125,9 @@ func get_exp():
 func get_level():
 	return m_player_data.player_level
 func get_exp_need_to_upgrade():
-	if m_player_data.player_level < 0 or m_player_data.player_level < len(m_game_data.level_up_need_exp):
+	if m_player_data.player_level < 0:
 		return 0
-	return m_game_data.level_up_need_exp[m_player_data.player_level]
+	return m_player_data.player_level * m_player_data.player_level * 2 + m_player_data.player_level * 127 + 51
 func get_gold():
 	return m_player_data.gold
 func get_part():
@@ -166,6 +178,8 @@ func set_box_count(val):
 	m_player_data.box_count = val
 func get_ant_born_ratio_increase(ant_cnt):
 	return 0.7
+func eat_ant():
+	m_player_data.player_exp += m_game_data.exp_per_ant
 
 # == map
 

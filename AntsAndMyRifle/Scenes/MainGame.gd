@@ -26,6 +26,7 @@ var m_battle_scene_inst
 
 # for battle
 var m_battle_id = -1
+var m_last_battle_result = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -180,6 +181,8 @@ func get_ant_born_ratio_increase(ant_cnt):
 	return 0.7
 func eat_ant():
 	m_player_data.player_exp += m_game_data.exp_per_ant
+func get_battle_result():
+	return m_last_battle_result
 
 # == map
 
@@ -220,6 +223,9 @@ func get_player_bullet_ps():
 func get_enemy_bullet_ps():
 	return load("res://Scenes/Battle/Bullets/EB_0.tscn")
 func battle_result(win):
+	if win:
+		m_last_battle_result = 2000
+		m_player_data.gold += m_last_battle_result
 	if m_battle_scene_inst != null:
 		m_battle_scene_inst.queue_free()
 		m_battle_scene_inst = null
@@ -229,6 +235,7 @@ func battle_result(win):
 	m_home_container.add_child(m_home_scene_inst)
 	m_home_scene_inst.position = Vector2.ZERO
 	m_home_scene_inst.setup(self)
+	m_home_scene_inst.show_battle_result()
 # ----forward
 func get_player_max_hp():
 	return get_attr_hp()
@@ -251,24 +258,30 @@ func get_player_boom_damage():
 func get_enemy_atk(type_id):
 	return 100 # TODO
 func get_enemy_max_hp(type_id):
-	return 100 # TODO
+	return 1 # TODO
 func get_enemy_radius(type_id):
-	return 500
+	return 50
 func get_enemy_attack_range(type_id):
-	return 1000 * type_id + 2
-func get_enemy_attack_bullet_speed(type_id):
 	return 100 * type_id + 2
+func get_enemy_attack_bullet_speed(type_id):
+	return 10 * type_id + 2
 func get_enemy_attack_cd(type_id):
 	return 500
 func get_enemy_attack_pre(type_id):
 	return 100
 func get_enemy_move_speed(type_id):
-	return 100
+	if type_id == 0:
+		return 10
+	elif type_id == 1:
+		return 5
+	elif type_id == 2:
+		return 30
+	return 0
 func get_main_spawn_enemy(step_cnt):
 	if step_cnt > 1000:
 		return null
-	if step_cnt % 200:
-		return 0
+	if step_cnt % 200 == 0:
+		return int(floor(step_cnt / 200)) % 3
 	return null
 func player_use_boom():
 	if m_player_data.boom_count > 0:

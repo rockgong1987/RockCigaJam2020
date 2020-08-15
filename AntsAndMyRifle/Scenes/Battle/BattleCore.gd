@@ -213,6 +213,7 @@ func step(boom_pos):
 	process_bullets()
 	process_enemy_bullets()
 	m_main_step_counter += 1
+	print(m_player_bullets_pos)
 	
 func get_player_hp():
 	return m_player_hp

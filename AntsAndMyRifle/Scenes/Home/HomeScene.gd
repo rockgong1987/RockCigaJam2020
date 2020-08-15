@@ -62,6 +62,7 @@ onready var m_ant_born_ratio = $HUD/AntBornRatio
 onready var m_gacha_cd_label = $HUD/GachaCD
 
 onready var m_update_panel = $UpgradePanel
+onready var m_battle_result = $BattleResult
 
 var m_timer = 0.0
 var m_step = 1.0 / 60.0
@@ -97,6 +98,17 @@ func setup(context):
 	refresh_hud()
 	refresh_upgrade_panel()
 	pass
+	
+func show_battle_result():
+	var battle_result = m_context.get_battle_result()
+	var content = ""
+	if battle_result == 0:
+		content = content + "YOU LOSE!"
+	else:
+		content = content + "YOU WIN\n"
+		content = content + "Gold Reward : " + str(battle_result)
+	m_battle_result.dialog_text = content
+	m_battle_result.popup_centered_ratio()
 
 func refresh_hud():
 	m_player_exp_label.text = "EXP : " + str(m_context.get_exp())

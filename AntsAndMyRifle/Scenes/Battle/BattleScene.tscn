@@ -5,6 +5,8 @@
 
 [node name="BattleScene" type="Node2D"]
 script = ExtResource( 2 )
+pos_linear_weight = 0.1
+bullet_y_offset = -30.0
 
 [node name="BattleCore" parent="." instance=ExtResource( 1 )]
 

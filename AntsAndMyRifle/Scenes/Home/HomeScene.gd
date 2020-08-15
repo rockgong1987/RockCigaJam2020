@@ -47,12 +47,12 @@ var m_context = null
 # get_box_count()
 # set_ant_count()
 # set_ant_count()
-
 onready var m_home_core = $HomeCore
 onready var m_player_position = $PlayerPos
 onready var m_ant_home_position = $AntHomePos
 onready var m_bg_container = $BGContainer
 onready var m_box_container = $BoxPos
+onready var m_box_spawn_pos = $BoxSpawnPos
 
 onready var m_player_exp_label = $HUD/PlayerExp
 onready var m_player_gold_label = $HUD/PlayerGold
@@ -67,6 +67,8 @@ var m_step = 1.0 / 60.0
 var m_player_inst = null
 var m_box_insts = []
 var m_ant_insts = []
+
+var m_waiting_box = null
 
 func setup(context):
 	m_context = context
@@ -120,7 +122,8 @@ func process_ants():
 						break
 				a[3] = b.global_position
 				var t = state[2] * 1.0 / state[4]
-				a[1].global_position = Vector2(t * a[2].x + (1 - t) * a[3].x, t * a[2].y + (1 - t) * a[3].y)
+				var y_offset = -sin(t * PI) * 100
+				a[1].global_position = Vector2(t * a[2].x + (1 - t) * a[3].x, t * a[2].y + (1 - t) * a[3].y + y_offset)
 			elif state[1] == 2:
 				var box_id = state[3]
 				var b = null
@@ -131,7 +134,8 @@ func process_ants():
 				a[1].global_position = b.global_position
 			elif state[1] == 3:
 				var t = state[2] * 1.0 / state[4]
-				a[1].global_position = Vector2(t * a[3].x + (1 - t) * a[2].x, t * a[3].y + (1 - t) * a[2].y)
+				var y_offset = -sin(t * PI) * 100
+				a[1].global_position = Vector2(t * a[3].x + (1 - t) * a[2].x, t * a[3].y + (1 - t) * a[2].y + y_offset)
 	pass
 
 func _process(delta):
@@ -143,11 +147,25 @@ func _process(delta):
 		m_timer -= m_step
 	process_ants()
 	m_ant_born_ratio.text = str(m_home_core.get_ant_born_ratio())
+	
+func spawn_box_inst():
+	var ps = m_context.get_box_ps()
+	if ps != null:
+		if m_waiting_box != null:
+			m_waiting_box.queue_free()
+		m_waiting_box = ps.instance()
+		m_box_container.add_child(m_waiting_box)
+		m_waiting_box.global_position = m_box_spawn_pos.global_position
 
 func box_spawned(inst_id):
-	var box_ps = m_context.get_box_ps()
-	if box_ps != null:
-		var inst = box_ps.instance()
+	var inst = m_waiting_box
+	if inst == null:
+		var box_ps = m_context.get_box_ps()
+		if box_ps != null:
+			inst = box_ps.instance()
+	else:
+		m_waiting_box = null
+	if inst != null:
 		m_box_container.add_child(inst)
 		inst.position = Vector2.ZERO
 		m_box_insts.append([inst_id, inst])
@@ -200,4 +218,11 @@ func _on_UpgradeSwitch_pressed():
 
 func _on_Battle_pressed():
 	m_context.home_battle_pressed()
+	pass # Replace with function body.
+
+
+func _on_BoxActiveZone_body_entered(body):
+	print(body.name)
+	if body is RigidBody2D:
+		m_home_core.spawn_box()
 	pass # Replace with function body.

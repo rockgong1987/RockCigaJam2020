@@ -16,8 +16,11 @@ var gold = 0
 var part = 0
 var boom_count = 0
 
-var ant_count = 0
-var box_count = 0
+var ant_count = 5
+var box_count = 5
+
+var ant_level = 1
+var box_level = 1
 
 func save():
 	pass # Replace with function body.

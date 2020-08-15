@@ -61,3 +61,8 @@ func set_box_count(val):
 	box_cnt = val
 func get_ant_born_ratio_increase(ant_cnt):
 	return 0.2
+
+
+func _on_AddBox_pressed():
+	m_home_scene.spawn_box_inst()
+	pass # Replace with function body.

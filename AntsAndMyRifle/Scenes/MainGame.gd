@@ -150,7 +150,7 @@ func home_battle_pressed():
 func get_box_capacity():
 	return m_game_data.box_level_capacity[m_player_data.box_level]
 func get_ant_capacity():
-	return m_game_data.and_level_capacity[m_player_data.and_level]
+	return m_game_data.ant_level_capacity[m_player_data.ant_level]
 func get_ant_count():
 	return m_player_data.ant_count
 func get_box_count():
@@ -159,6 +159,8 @@ func set_ant_count(val):
 	m_player_data.ant_count = val
 func set_box_count(val):
 	m_player_data.box_count = val
+func get_ant_born_ratio_increase(ant_cnt):
+	return 0.7
 
 # == map
 

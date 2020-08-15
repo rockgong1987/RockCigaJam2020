@@ -32,6 +32,20 @@ var levels = [
 	["Shop7", "This is Shop7"],
 	["Shop88", "This is Shop88"]
 ]
+
+var box_level_capacity = [
+	0,
+	5,
+	10,
+	15
+]
+
+var ant_level_capacity = [
+	0,
+	5,
+	10,
+	15
+]
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
